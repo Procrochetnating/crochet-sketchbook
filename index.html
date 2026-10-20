@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Crochet Studio – Free Filet Crochet Pattern Maker</title>
+<title>Crochet Studio</title>
 <meta name="description" content="Design filet crochet charts right in your browser. Click and drag to draw, add text and borders, and save your pattern as an image. Free, no sign-up.">
 <link rel="canonical" href="https://procrochetnating.github.io/crochet-studio/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232d3563'/%3E%3Cg fill='%23fff'%3E%3Crect x='15.2' y='4.0' width='5.2' height='5.2'/%3E%3Crect x='9.6' y='9.6' width='5.2' height='5.2'/%3E%3Crect x='15.2' y='9.6' width='5.2' height='5.2'/%3E%3Crect x='20.8' y='9.6' width='5.2' height='5.2'/%3E%3Crect x='4.0' y='15.2' width='5.2' height='5.2'/%3E%3Crect x='9.6' y='15.2' width='5.2' height='5.2'/%3E%3Crect x='20.8' y='15.2' width='5.2' height='5.2'/%3E%3Crect x='26.4' y='15.2' width='5.2' height='5.2'/%3E%3Crect x='9.6' y='20.8' width='5.2' height='5.2'/%3E%3Crect x='15.2' y='20.8' width='5.2' height='5.2'/%3E%3Crect x='20.8' y='20.8' width='5.2' height='5.2'/%3E%3Crect x='15.2' y='26.4' width='5.2' height='5.2'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232d3563'/%3E%3Cg fill='%23fff'%3E%3Crect x='13.5' y='3.5' width='5' height='5'/%3E%3Crect x='8.5' y='8.5' width='5' height='5'/%3E%3Crect x='13.5' y='8.5' width='5' height='5'/%3E%3Crect x='18.5' y='8.5' width='5' height='5'/%3E%3Crect x='3.5' y='13.5' width='5' height='5'/%3E%3Crect x='8.5' y='13.5' width='5' height='5'/%3E%3Crect x='18.5' y='13.5' width='5' height='5'/%3E%3Crect x='23.5' y='13.5' width='5' height='5'/%3E%3Crect x='8.5' y='18.5' width='5' height='5'/%3E%3Crect x='13.5' y='18.5' width='5' height='5'/%3E%3Crect x='18.5' y='18.5' width='5' height='5'/%3E%3Crect x='13.5' y='23.5' width='5' height='5'/%3E%3C/g%3E%3C/svg%3E">
 <meta name="theme-color" content="#2d3563">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Crochet Studio">
@@ -57,7 +57,9 @@ canvas{display:block;background:#fff;border:1px solid var(--line);touch-action:n
 .ed{position:fixed;z-index:4;box-shadow:0 4px 16px rgba(0,0,0,.12)}
 .ed.t{left:50%;top:150px;transform:translateX(-50%)}.ed.b{left:50%;bottom:16px;transform:translateX(-50%)}
 .ed.l{left:12px;top:50%;transform:translateY(-50%)}.ed.r{right:12px;top:50%;transform:translateY(-50%)}
-#info{text-align:center;font-size:13px;color:var(--mut);margin-top:14px}
+#info .lnk{border:none;background:none;padding:0;font:inherit;color:var(--acc);text-decoration:underline;cursor:pointer}
+#info b{color:var(--ink)}
+#info{text-align:center;line-height:1.6;font-size:13px;color:var(--mut);margin-top:14px}
 .zoom{position:fixed;bottom:16px;right:16px;z-index:4;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 18px;display:flex;align-items:center;gap:10px;font-size:15px;color:var(--mut);box-shadow:0 4px 16px rgba(0,0,0,.12)}
 .selbar{position:fixed;bottom:72px;left:50%;transform:translateX(-50%);z-index:4;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mut);box-shadow:0 4px 16px rgba(0,0,0,.12)}
 .selbar[hidden]{display:none}
@@ -82,6 +84,8 @@ footer{text-align:center;font-size:12px;color:#b5b0bf;padding:18px 0 90px}
 .card{background:#fff;border-radius:14px;padding:20px 22px;width:min(440px,100%);max-height:calc(100vh - 32px);overflow:auto;box-shadow:0 16px 48px rgba(0,0,0,.25)}
 .card h2{margin:0 0 12px;font-size:18px;font-weight:600}
 .card label.f{display:block;font-size:13px;color:var(--mut);margin-bottom:12px}
+.card textarea{display:block;width:100%;margin-top:4px;font:inherit;font-size:16px;padding:9px 10px;border:1px solid var(--line);border-radius:8px;color:var(--ink);resize:none;line-height:1.35}
+.card .nt2{display:block;font-size:12px;margin-top:4px;color:var(--mut)}
 .card input[type=text]{display:block;width:100%;margin-top:4px;font:inherit;font-size:16px;padding:9px 10px;border:1px solid var(--line);border-radius:8px;color:var(--ink)}
 .card .hrow{display:flex;align-items:flex-end;gap:10px;margin-bottom:6px}
 .card .hrow label{font-size:13px;color:var(--mut)}
@@ -170,8 +174,9 @@ footer{text-align:center;font-size:12px;color:#b5b0bf;padding:18px 0 90px}
 <div class="modal" id="txtm" hidden>
   <div class="card" role="dialog" aria-label="Enter Text">
     <h2>Enter Text</h2>
-    <label class="f">What would you like to write?<input type="text" id="ttxt" maxlength="40" placeholder="Start typing…" autocomplete="off" autocapitalize="off" spellcheck="false"></label>
+    <label class="f">What would you like to write?<textarea id="ttxt" rows="2" maxlength="160" placeholder="Start typing…" autocomplete="off" autocapitalize="off" spellcheck="false"></textarea><span class="nt2">Press Enter for a new line (up to 4 lines).</span></label>
     <div class="fl" id="fontlist" role="radiogroup" aria-label="Font"></div>
+    <div class="hrow" id="lineopts" hidden><label>Line spacing<select id="tlgap"><option value="1">Tight</option><option value="2" selected>Normal</option><option value="3">Roomy</option></select></label><label>Align lines<select id="talign"><option value="center" selected>Center</option><option value="left">Left</option><option value="right">Right</option></select></label></div>
     <div class="hrow" id="gapopt"><label>Letter spacing<select id="tgap"><option value="1">Snug</option><option value="2">Roomy</option><option value="3">Airy</option></select></label></div>
     <div id="autoopts" hidden>
       <div class="hrow"><label>Height (rows)<input type="number" id="thh" min="1" max="40" value="7"></label><button id="trec" type="button">Use recommended</button></div>
@@ -203,6 +208,19 @@ footer{text-align:center;font-size:12px;color:#b5b0bf;padding:18px 0 90px}
     <div class="acts"><button id="bcancel" type="button">Cancel</button><button id="badd" type="button" class="pri">Add border</button></div>
   </div>
 </div>
+<div class="modal" id="cm" hidden>
+  <div class="card" role="dialog" aria-label="Foundation chain">
+    <h2>Foundation chain</h2>
+    <p style="margin:0 0 12px;font-size:13.5px;color:var(--mut);line-height:1.45">The chain depends on how big one square is in your stitch. Pick the way you work.</p>
+    <label class="f" style="margin-bottom:12px">How do you work a mesh square?<select id="cmeth" style="display:block;width:100%;margin-top:4px;font:inherit;font-size:15px;padding:8px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)"><option value="3">Classic: ch 2, skip 2, dc (3 stitches per square)</option><option value="2">Tight: ch 1, skip 1, dc (2 stitches per square)</option></select></label>
+    <p id="cbig" style="margin:0 0 4px;font-size:15px"></p>
+    <p id="cmath" style="margin:0 0 4px;font-size:13.5px;color:var(--mut);line-height:1.45"></p>
+    <p id="crange" style="margin:0 0 14px;font-size:13.5px;color:var(--mut);line-height:1.45"></p>
+    <div class="hrow"><label>Spare chains (optional)<input type="number" id="cspare" min="0" max="20" value="0"></label><span id="ctot" style="font-size:14px;padding-bottom:9px"></span></div>
+    <ol id="csteps" style="margin:6px 0 14px;padding-left:20px;font-size:13.5px;line-height:1.55"></ol>
+    <div class="acts"><button id="cclose" type="button" class="pri">Got it</button></div>
+  </div>
+</div>
 <div class="modal" id="qm" hidden>
   <div class="card" role="alertdialog" aria-labelledby="qmsg">
     <p id="qmsg" style="margin:0 0 16px;font-size:15.5px;line-height:1.45"></p>
@@ -212,6 +230,28 @@ footer{text-align:center;font-size:12px;color:#b5b0bf;padding:18px 0 90px}
 <div class="zoom"><button class="zb" id="zout" aria-label="Zoom out">−</button><input type="range" id="zoom" min="14" max="52" value="28" aria-label="Zoom"><button class="zb" id="zin" aria-label="Zoom in">+</button></div>
 <script>
 const $=id=>document.getElementById(id);
+/* foundation chain guide. A square is 3 stitches (ch 2 mesh) or 2 stitches (ch 1 mesh); the chain is stitches across + 1 post + 2 for the first dc */
+let chainM=null;try{const v=+localStorage.getItem('filet-chain-method');if(v===2||v===3)chainM=v}catch(e){}
+const chainLen=(n,m)=>m*n+3;
+function infoHTML(){
+  const c=chainM?`<b>${chainLen(W,chainM)}</b> (${chainM}-stitch squares)`:`<b>${chainLen(W,2)}–${chainLen(W,3)}</b> depending on your stitch`;
+  return `${W} × ${H} = ${W*H} stitches<br>Foundation chain: ${c} <button type="button" class="lnk" id="chainhelp">How is this counted?</button>`}
+function chainGuide(){
+  const m=+$('cmeth').value,n=Math.max(0,Math.min(20,Math.round(+$('cspare').value)||0)),base=chainLen(W,m);
+  $('cbig').innerHTML=`Chain <b>${base}</b> to start`+(n?` (<b>${base+n}</b> with your ${n} spare)`:'');
+  $('cmath').textContent=`${m} chains for each of your ${W} squares (${m*W}) + 3 (1 for the extra post at the start and 2 for the first dc) = ${base}.`;
+  $('crange').textContent=`Across all methods, your ${W}-square width needs ${chainLen(W,2)} to ${chainLen(W,3)} chains.`;
+  const mesh=m===3?'ch 2, skip 2 stitches, dc':'ch 1, skip 1 stitch, dc',fill=m===3?'1 dc in each of the next 3 stitches':'1 dc in each of the next 2 stitches';
+  $('csteps').innerHTML=`<li><b>Row 1:</b> double crochet in the 4th chain from the hook (the skipped 3 chains count as your first stitch).</li>
+   <li><b>Mesh square:</b> ${mesh}. <b>Filled square:</b> ${fill}.</li>
+   <li><b>Every new row:</b> ch 3 to turn (it counts as the first dc), then follow the chart. Your chart has <b>${H} rows</b>.</li>
+   <li>Read the chart from the bottom up. Odd rows run right → left and even rows left → right (reverse this if you are left-handed).</li>`;
+  chainM=m;try{localStorage.setItem('filet-chain-method',String(m))}catch(e){}
+  $('info').innerHTML=infoHTML()}
+$('info').addEventListener('click',e=>{if(e.target.id==='chainhelp'){$('cmeth').value=String(chainM||3);chainGuide();$('cm').hidden=false;$('cclose').focus()}});
+$('cspare').addEventListener('input',chainGuide);$('cmeth').addEventListener('change',chainGuide);
+const closeCm=()=>{$('cm').hidden=true};
+$('cclose').onclick=closeCm;$('cm').addEventListener('click',e=>{if(e.target===$('cm'))closeCm()});$('cm').addEventListener('keydown',e=>{if(e.key==='Escape')closeCm()});
 /* in-page replacements for confirm()/alert(), which some viewers and embedded previews silently block */
 let qAct=null;
 function ask(msg,yes,fn){$('qmsg').textContent=msg;$('qyes').textContent=yes||'OK';$('qno').hidden=!fn;qAct=fn||null;$('qm').hidden=false;$('qyes').focus()}
@@ -237,7 +277,7 @@ function placeTop(){const b=document.querySelector('.hdr');if(b)document.querySe
 addEventListener('scroll',placeTop,{passive:true});
 addEventListener('resize',()=>{updZoom();render(cv,cell,dpr());placeTop()});
 function sync(){bar();
-  H=g.length;W=g[0].length;updZoom();placeTop();$('info').textContent=`${W} × ${H} = ${W*H} stitches`;render(cv,cell,dpr());
+  H=g.length;W=g[0].length;updZoom();placeTop();$('info').innerHTML=infoHTML();render(cv,cell,dpr());
   saveTab();
   try{localStorage.setItem(KEY2,JSON.stringify({cur:ti,tabs:tabs.map(t=>({name:t.name,g:t.g,rot:t.rot}))}));localStorage.setItem(KEY,JSON.stringify({g,rot}))}catch(e){}}
 /* tabs: several designs, each with its own grid, history and zoom */
@@ -344,13 +384,15 @@ cv.addEventListener('pointerdown',e=>{
 cv.addEventListener('pointermove',e=>{
   if(sm){const p=at(e),cl=(v,a,b)=>Math.max(a,Math.min(b,v));
     if(sm.m==='fdrag'){const bw=flt.buf[0].length,bh=flt.buf.length;flt.x=cl(sm.base[0]+p[0]-sm.p[0],0,W-bw);flt.y=cl(sm.base[1]+p[1]-sm.p[1],0,H-bh)}
-    else if(sm.m==='draw'){const cx=cl(p[0],0,W-1),cy=cl(p[1],0,H-1);
+    else if(sm.m==='draw'){if(p[0]!==sm.a[0]||p[1]!==sm.a[1])sm.moved=true;const cx=cl(p[0],0,W-1),cy=cl(p[1],0,H-1);
       sel={x0:Math.min(sm.a[0],cx),y0:Math.min(sm.a[1],cy),x1:Math.max(sm.a[0],cx),y1:Math.max(sm.a[1],cy)}}
     else{const b=sm.base;sm.dx=cl(p[0]-sm.p[0],-b.x0,W-1-b.x1);sm.dy=cl(p[1]-sm.p[1],-b.y0,H-1-b.y1);place(sm.orig,b,sm.buf,sm.dx,sm.dy)}
     render(cv,cell,dpr());return}
   if(!drawing)return;const p=at(e);line(last,p);last=p;render(cv,cell,dpr())});
-const end=()=>{if(sm){const t=sm;sm=null;if(t.m==='move'&&!t.dx&&!t.dy)undo.pop();sync();return}
+const end=()=>{if(sm){const t=sm;sm=null;if(t.m==='move'&&!t.dx&&!t.dy)undo.pop();if(t.m==='draw'&&!t.moved)sel=null;/* a plain click outside the selection deselects */sync();return}
   if(!drawing)return;drawing=false;if(!changed)undo.pop();sync()};
+/* clicking anywhere else on the page (not on a control) also deselects */
+addEventListener('pointerdown',e=>{if(brush!==3||!sel||flt||sm)return;const t=e.target;if(t&&t.closest&&t.closest('#cv,#selbar,.ed,.hdr,.modal,.zoom'))return;sel=null;note='';sync()});
 cv.addEventListener('pointerup',end);cv.addEventListener('pointercancel',end);
 
 /* controls */
@@ -554,22 +596,22 @@ const BF_DOT={
 "Y":[6,'#...#/#...#/#...#/.#.#./..#../..#../..#..'],
 "Z":[6,'#####/....#/...#./..#../.#.../#..../#####'],
 "a":[4,'####/...#/####/#..#/####'],
-"b":[5,'#.../#.../####/#..#/#..#/####'],
-"c":[3,'####/#.../#.../####'],
-"d":[5,'...#/...#/####/#..#/#..#/####'],
+"b":[6,'#.../#.../####/#..#/#..#/#..#/####'],
+"c":[4,'####/#.../#.../#.../####'],
+"d":[6,'...#/...#/####/#..#/#..#/#..#/####'],
 "e":[4,'####/#..#/####/#.../####'],
-"f":[5,'.###/.#../####/.#../.#../.#..'],
-"g":[4,'####/#..#/####/...#/####'],
-"h":[5,'#.../#.../####/#..#/#..#/#..#'],
-"i":[5,'#/./#/#/#/#'],
-"j":[5,'..#/.../..#/#.#/#.#/###'],
-"k":[5,'#.../#..#/#..#/###./#..#/#..#'],
-"l":[5,'#/#/#/#/#/#'],
-"m":[3,'####./#.#.#/#.#.#/#.#.#'],
-"n":[3,'###./#..#/#..#/#..#'],
+"f":[6,'.###/.#../####/.#../.#../.#../.#..'],
+"g":[4,'####/#..#/#..#/#..#/####/...#/####'],
+"h":[6,'#.../#.../####/#..#/#..#/#..#/#..#'],
+"i":[6,'#/./#/#/#/#/#'],
+"j":[6,'..#/.../..#/..#/..#/..#/..#/..#/###'],
+"k":[6,'#.../#.../#..#/#..#/###./#..#/#..#'],
+"l":[6,'#/#/#/#/#/#/#'],
+"m":[4,'####./#.#.#/#.#.#/#.#.#/#.#.#'],
+"n":[4,'###./#..#/#..#/#..#/#..#'],
 "o":[4,'####/#..#/#..#/#..#/####'],
-"p":[4,'####/#..#/#..#/####/#.../#...'],
-"q":[4,'####/#..#/#..#/####/...#/...#'],
+"p":[4,'####/#..#/#..#/#..#/####/#.../#...'],
+"q":[4,'####/#..#/#..#/#..#/####/...#/...#'],
 "r":[4,'###./#..#/#.../#.../#...'],
 "s":[4,'####/#.../####/...#/####'],
 "t":[5,'.#../####/.#../.#../.#../.###'],
@@ -577,7 +619,7 @@ const BF_DOT={
 "v":[4,'#...#/#...#/##.##/.###./..#..'],
 "w":[4,'#...#/#...#/#.#.#/#####/.#.#.'],
 "x":[4,'#..#/#..#/.##./#..#/#..#'],
-"y":[4,'#..#/#..#/####/...#/...#/####'],
+"y":[4,'#..#/#..#/#..#/#..#/####/...#/####'],
 "z":[4,'###/..#/.#./#../###'],
 "_":[0,'###'],
 ".":[0,'#'],
@@ -673,14 +715,15 @@ const KO_CHO='ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ',KO_JUNG
   KO_MIX={ㅘ:'ㅗㅏ',ㅙ:'ㅗㅐ',ㅚ:'ㅗㅣ',ㅝ:'ㅜㅓ',ㅞ:'ㅜㅔ',ㅟ:'ㅜㅣ',ㅢ:'ㅡㅣ'};
 const KO_LIM={min:12,rec:12};
 function koWidth(H){return 7+2*Math.max(0,Math.floor((H-12)/6))}
-function koCons(c,P,x,y,w,h){
+function koCons(c,P,x,y,w,h,ft){
   if(w<1||h<1)return;
   const hl=(a,b,r)=>{for(let i=a;i<=b;i++)P(x+i,y+r)},vl=(col,a,b)=>{for(let j=a;j<=b;j++)P(x+col,y+j)};
-  if(KO_TENSE[c]){const k=Math.floor((w+1)/2);koCons(KO_TENSE[c],P,x,y,k,h);koCons(KO_TENSE[c],P,x+w-k,y,k,h);return}
+  if(KO_TENSE[c]){const k=Math.floor((w+1)/2);koCons(KO_TENSE[c],P,x,y,k,h,ft);koCons(KO_TENSE[c],P,x+w-k,y,k,h,ft);return}
   const cl=Math.floor((w-1)/2),cr=w-1-cl,mid=Math.floor((h-1)/2),
     spread=(mx,k)=>mx>=2?mx-Math.ceil(k/3):(k<=3?1:0),
     legs=y0=>{for(let r=y0;r<h;r++){const k=h-1-r,up=r-y0;
-      P(x+cl-Math.max(0,Math.min(spread(cl,k),up)),y+r);P(x+cr+Math.max(0,Math.min(spread(w-1-cr,k),up)),y+r)}},
+      const a=cl-Math.max(0,Math.min(spread(cl,k),up)),b=cr+Math.max(0,Math.min(spread(w-1-cr,k),up));
+      P(x+a,y+r);P(x+b,y+r);if(ft&&r===h-1&&up>=2){if(a>=1)P(x+a-1,y+r);if(b<w-1)P(x+b+1,y+r)}}},
     ring=(rx,ry,rw,rh)=>{for(let i=0;i<rw;i++)for(let j=0;j<rh;j++){
       if(i&&j&&i<rw-1&&j<rh-1)continue;if(rw>=3&&rh>=3&&(i===0||i===rw-1)&&(j===0||j===rh-1))continue;P(x+rx+i,y+ry+j)}},
     hook=h>=8&&w>=3;
@@ -694,7 +737,7 @@ function koCons(c,P,x,y,w,h){
     case 'ㅅ':legs(0);break;
     case 'ㅇ':ring(0,0,w,h);break;
     case 'ㅈ':hl(0,w-1,0);legs(1);break;
-    case 'ㅊ':{const t=h>=10?3:2;hl(Math.floor((w-1)/2),Math.floor((w-1)/2)+(w>=3?1:0),0);hl(0,w-1,t-1);legs(t)}break;
+    case 'ㅊ':{const t=h>=10?3:2;hl(Math.floor((w-1)/2),Math.floor((w-1)/2)+(w>=3&&!ft?1:0),0);hl(0,w-1,t-1);legs(t)}break;
     case 'ㅋ':hl(0,w-1,0);vl(w-1,0,hook?h-2:h-1);if(hook)P(x+w-2,y+h-1);hl(0,w-1,h>=5?mid:1+(h>3?1:0));break;
     case 'ㅌ':hl(0,w-1,0);hl(0,w-1,mid);hl(0,w-1,h-1);vl(0,0,h-1);break;
     case 'ㅍ':{const a=w>=5?1:0;hl(0,w-1,0);hl(0,w-1,h-1);vl(a,0,h-1);vl(w-1-a,0,h-1)}break;
@@ -718,8 +761,8 @@ function koVowV(v,P,W,U){
   else{const b1=W-2-tl;vl(b1,0,U-1);vl(W-1,0,U-1);
     if('ㅐㅒ'.includes(v))rows.forEach(r=>hl(b1+1,W-2,r));else rows.forEach(r=>hl(b1-tl,b1-1,r))}}
 /* horizontal vowel: returns {ch: consonant height above it}; draws into x..x+w-1 */
-function koVowH(v,P,x,w,U,draw){
-  const t=Math.max(2,Math.round(U/3)),tj=Math.max(1,Math.round(U/3)-1);let ch;
+function koVowH(v,P,x,w,U,draw,jong){
+  const t=jong?1:Math.max(2,Math.round(U/3)),tj=jong?1:Math.max(1,Math.round(U/3));let ch;
   if(v==='ㅡ')ch=U-2;else if(v==='ㅗ'||v==='ㅛ')ch=U-1-t;else ch=U-2-tj;
   if(!draw)return {ch};
   const hl=(a,b,r)=>{for(let i=a;i<=b;i++)P(x+i,r)},vl=(c,a,b)=>{for(let j=a;j<=b;j++)P(x+c,j)},
@@ -734,18 +777,24 @@ function koSyl(code,H,W){
   const n=code-0xAC00;return koDraw(KO_CHO[Math.floor(n/588)],KO_JUNG[Math.floor(n%588/28)],KO_JONG[n%28],H,W)}
 function koDraw(cho,jung,jong,H,W){
   const g=Array.from({length:H},()=>Array(W).fill(0)),P=(x,y)=>{if(x>=0&&x<W&&y>=0&&y<H)g[y][x]=1};
-  const jj=KO_DBL[jong]||jong,need5=/[ㄹㅌㅎㅊ]/.test(jj),low=jong?Math.max(4,Math.round(H/3),need5?5:0):0,U=jong?H-1-low:H,mix=KO_MIX[jung],
+  const jj=KO_DBL[jong]||jong,need5=/[ㄹㅌㅎㅊ]/.test(jj),low=jong?(jj==='ㅅ'?Math.max(3,Math.round(H/4)):Math.max(4,Math.round(H/3),need5?5:0)):0,U=jong?H-1-low:H,mix=KO_MIX[jung],
     cons=(x,y,w,h)=>{if(cho)koCons(cho,P,x,y,w,h)},tense=!!KO_TENSE[cho];
   if(jung&&'ㅏㅐㅑㅒㅓㅔㅕㅖㅣ'.includes(jung)){
-    const gm=koVgeo(jung,W);cons(0,0,gm.cw+(tense&&gm.ext?1:0),(jong||cho==='ㄹ')?U:U-1);koVowV(jung,P,W,U)}
+    const gm=koVgeo(jung,W);cons(0,0,gm.cw+(tense&&gm.ext?1:0),jong?U:cho==='ㄹ'?U-1:U-2);koVowV(jung,P,W,U)}
   else if(mix){
-    const hv=mix[0],vv=mix[1],gm=koVgeo(vv,W),wl=gm.cw,m=koVowH(hv,P,0,wl,U,true);
+    const hv=mix[0],vv=mix[1],gm=koVgeo(vv,W),wl=gm.cw,m=koVowH(hv,P,0,wl,U,true,jong);
     cons(0,0,wl,m.ch);koVowV(vv,P,W,U)}
   else if(jung){
-    const m=koVowH(jung,P,0,W,U,true);cons(1,0,W-2,m.ch)}
-  if(jong){const d=KO_DBL[jong],y=U+1;
-    if(d){const w1=Math.floor((W-1)/2);koCons(d[0],P,0,y,w1,low);koCons(d[1],P,w1+1,y,W-1-w1,low)}
-    else koCons(jong,P,1,y,W-1,low)}
+    const m=koVowH(jung,P,0,W,U,true,jong);cons(1,0,W-2,m.ch)}
+  if(jong){const d=KO_DBL[jong],y=U+1,horiz=!!jung&&!mix&&'ㅗㅛㅜㅠㅡ'.includes(jung);
+    /* the bottom consonant sits right under the top part: from its left edge to the vowel stick */
+    let bl,br;
+    if(horiz){const legged=/^[ㅅㅆㅈㅊ]$/.test(jong);bl=legged?0:1;br=legged?W-1:W-2}
+    else{bl=/[ㅇㅅㅈㅊㅆㅉㅎ]/.test(cho)?1:0;br=(jung&&'ㅏㅑ'.includes(jung))?W-1-koTick(W):W-1}
+    if(br-bl<2){bl=1;br=W-1}
+    const bw=br-bl+1;
+    if(d){const w1=Math.floor(bw/2),sp=bw%2?1:0;koCons(d[0],P,bl,y,w1,low,true);koCons(d[1],P,bl+w1+sp,y,bw-w1-sp,low,true)}
+    else koCons(jong,P,bl,y,bw,low,true)}
   return g}
 function koLayout(text,H,gap){
   const W=koWidth(H),cols=[],missing=[];let any=false,pend=false;
@@ -868,7 +917,7 @@ function tDraw(){
   if(!tb)return clearCanvas(c);
   const cs=Math.max(2,Math.min(14,Math.floor(374/tb[0].length)));paintGrid(c,tb,cs,cs>=6)}
 function drawSamples(t){
-  const s=(t.trim()||'Abc').slice(0,14);
+  const s=(t.split('\n').find(l=>l.trim())||'Abc').trim().slice(0,14);
   FONTS.forEach(f=>{if(!f.bm&&!f.ko)return;
     let r;const c=f.el.querySelector('canvas'),hs=[...s].filter(ch=>ch.codePointAt(0)>=0xAC00&&ch.codePointAt(0)<=0xD7A3).join('').slice(0,4)||'가나다';
     r=f.ko?koLayout(hs,KO_LIM.min,tGap):bmLayout(s,f.bm,tGap);
@@ -882,8 +931,20 @@ FONTS.forEach(f=>{
   $('fontlist').appendChild(b);f.el=b});
 function chipSync(){FONTS.forEach(f=>{f.el.classList.toggle('sel',f===curFont);f.el.setAttribute('aria-checked',String(f===curFont))})}
 chipSync();
+/* each line is laid out on its own, then the lines are stacked and aligned */
+function stackLines(t,fn){
+  const lines=t.split('\n').filter(l=>l.trim()).slice(0,4),gs=[],missing=[];
+  lines.forEach(l=>{const r=fn(l);(r.missing||[]).forEach(m=>{if(!missing.includes(m))missing.push(m)});if(r.grid)gs.push(r.grid)});
+  if(!gs.length)return {grid:null,missing,n:lines.length};
+  const w=Math.max(...gs.map(x=>x[0].length)),lg=+$('tlgap').value||2,al=$('talign').value,out=[];
+  gs.forEach((gr,i)=>{
+    if(i)for(let k=0;k<lg;k++)out.push(Array(w).fill(0));
+    const off=al==='left'?0:al==='right'?w-gr[0].length:Math.floor((w-gr[0].length)/2);
+    gr.forEach(row=>{const r=Array(w).fill(0);row.forEach((v,x)=>{r[off+x]=v});out.push(r)})});
+  return {grid:out,missing,n:lines.length}}
 function tUpdate(){
   const t=$('ttxt').value,bm=curFont.bm;let msg='',warn='';
+  $('lineopts').hidden=t.split('\n').filter(l=>l.trim()).length<2;
   const isKo=!!curFont.ko;
   $('autoopts').hidden=!!bm;$('gapopt').hidden=!(bm||isKo);$('tnote').hidden=isKo;
   if(isKo){
@@ -892,14 +953,14 @@ function tUpdate(){
     $('autoopts').hidden=false;
     $('thint').innerHTML=`한글: at least <b>${KO_LIM.min}</b> rows, recommended <b>${KO_LIM.rec}</b>. Every syllable gets the same height. Go taller for roomier ㄹ ㅎ ㅊ ㅍ and bottom consonants.`;
     $('thint').classList.toggle('bad',bad);
-    const r=(t.trim()&&!bad)?koLayout(t,hh,tGap):{grid:null,missing:[]};tb=r.grid;
+    const r=(t.trim()&&!bad)?stackLines(t,l=>koLayout(l,hh,tGap)):{grid:null,missing:[]};tb=r.grid;
     if(r.missing.length)warn=`Not in this font, so skipped: ${r.missing.join(' ')}`;
     if(bad)msg=hh>40?'Keep it to 40 rows or fewer.':`Too small to stay readable. Use ${KO_LIM.min} rows or more.`;
     else if(!t.trim())msg='Type 한글 to see a preview.';
     else if(!tb)msg='This font only has 한글 syllables. Try another font for other characters.';
   }else if(bm){
     lastMode='bm';
-    const r=t.trim()?bmLayout(t,bm,tGap):{grid:null,missing:[]};tb=r.grid;
+    const r=t.trim()?stackLines(t,l=>bmLayout(l,bm,tGap)):{grid:null,missing:[]};tb=r.grid;
     if(r.missing.length)warn=`Not in this font, so skipped: ${r.missing.join(' ')}`;
     if(!t.trim())msg='Type something to see a preview.';
     else if(!tb)msg='None of these characters are in this font. Try Auto outline.';
@@ -910,7 +971,7 @@ function tUpdate(){
     const hh=Math.round(+$('thh').value)||0,bad=hh<L.min||hh>40;
     $('thint').innerHTML=`${k==='ko'?'한글':'English'}: at least <b>${L.min}</b> rows, recommended <b>${L.rec}</b>`;
     $('thint').classList.toggle('bad',bad);
-    tb=(t.trim()&&!bad)?textPattern(t,hh):null;
+    tb=(t.trim()&&!bad)?stackLines(t,l=>({grid:textPattern(l,hh)})).grid:null;
     if(bad)msg=hh>40?'Keep it to 40 rows or fewer.':`Too small to stay readable. Use ${L.min} rows or more.`;
     else if(!t.trim())msg='Type something to see a preview.';
     else if(!tb)msg='Nothing to draw for that text.';
@@ -931,7 +992,8 @@ $('tcancel').onclick=closeTxt;
 $('txtm').addEventListener('click',e=>{if(e.target===$('txtm'))closeTxt()});
 const tLater=()=>{clearTimeout(tt);tt=setTimeout(tUpdate,120)};
 $('ttxt').addEventListener('input',tLater);
-$('ttxt').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();$('tadd').click()}else if(e.key==='Escape')closeTxt()});
+$('ttxt').addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.metaKey||e.ctrlKey)){e.preventDefault();$('tadd').click()}else if(e.key==='Escape')closeTxt()});
+['tlgap','talign'].forEach(i=>$(i).addEventListener('change',tUpdate));
 $('tgap').addEventListener('change',e=>{tGap=+e.target.value;tUpdate()});
 $('thh').addEventListener('input',()=>{hTouched=true;tLater()});
 $('thh').addEventListener('keydown',e=>{if(e.key==='Escape')closeTxt()});
