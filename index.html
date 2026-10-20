@@ -30,7 +30,7 @@ body{margin:0;min-height:100vh;font-family:"Avenir Next",Avenir,"Segoe UI",syste
 .top p{margin:4px 0 0;color:var(--mut);font-size:15px}
 .top h1 .wm{display:block;height:30px;width:auto;image-rendering:auto}
 .hdr{position:sticky;top:0;z-index:5;background:var(--panel)}
-.bar{position:relative;background:var(--panel);border-bottom:1px solid var(--line);padding:6px 56px 14px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px;align-items:center}
+.bar{position:relative;background:var(--panel);border-bottom:1px solid var(--line);padding:6px 20px 14px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px;align-items:center}
 .grp{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .grp>span{font-size:13px;color:var(--mut);margin-right:2px}
 button{font:inherit;font-size:14px;padding:7px 11px;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:6px;cursor:pointer}
@@ -42,10 +42,6 @@ button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
 input[type=number]{width:60px;font:inherit;padding:6px;border:1px solid var(--line);border-radius:6px}
 #png{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:600}
 #png:hover{background:#232a52}
-.help{position:absolute;right:14px;bottom:10px}
-.help>button{width:32px;height:32px;padding:0;border-radius:50%;font-weight:700;color:var(--mut)}
-.tip{display:none;position:absolute;right:0;top:calc(100% + 12px);width:290px;background:var(--ink);color:#fff;padding:13px 15px;border-radius:10px;font-size:13.5px;line-height:1.55;text-align:left;box-shadow:0 8px 24px rgba(0,0,0,.2)}
-.help:hover .tip,.help.show .tip{display:block}
 main{padding:62px 100px 8px;overflow:auto}
 @media(max-width:760px){main{padding:62px 12px 8px}}
 .stage{display:grid;grid-template-columns:auto;align-items:center;justify-items:center;width:max-content;margin:0 auto}
@@ -73,7 +69,13 @@ footer{text-align:center;font-size:12px;color:#b5b0bf;padding:18px 0 90px}
 .selbar{flex-wrap:wrap;justify-content:center;max-width:calc(100vw - 24px);border-radius:22px;padding:8px 14px}
 .selbar .sg{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center}
 .selbar [hidden]{display:none!important}
-.selbar .chk{display:flex;align-items:center;gap:5px;cursor:pointer;color:var(--ink);font-size:13px}
+.selbar .chk{display:flex;align-items:center;gap:5px;cursor:pointer;color:#fff;font-size:13px}
+.selbar{background:var(--blue);border-color:var(--blue);color:#e4e6f6;box-shadow:0 6px 20px rgba(20,25,60,.35)}
+.selbar button{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+.selbar button:hover{background:rgba(255,255,255,.16)}
+.selbar button.pri{background:#fff!important;color:var(--blue)!important;border-color:#fff!important}
+.selbar button.pri:hover{background:#e6e8f7!important}
+#selmsg{color:#fff;font-weight:600}
 .pri{background:var(--blue)!important;border-color:var(--blue)!important;color:#fff!important;font-weight:600}
 .pri:hover{background:#232a52!important}
 .zoom{padding:6px 10px;gap:6px}
@@ -111,7 +113,23 @@ footer{text-align:center;font-size:12px;color:#b5b0bf;padding:18px 0 90px}
 .fchip .fc{font-size:11.5px;color:var(--mut);line-height:1.35}
 .hrow select{display:block;margin-top:4px;font:inherit;font-size:15px;padding:7px 8px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
 #twarn{font-size:12.5px;color:#9a5a00;margin:8px 0 0}
-.tabs{display:flex;align-items:flex-end;gap:4px;padding:6px 14px 0;background:#f7f6fa;border-bottom:1px solid var(--line);overflow-x:auto}
+.trow{display:flex;align-items:flex-end;background:#f7f6fa;border-bottom:1px solid var(--line)}
+.tabs{flex:1;min-width:0;display:flex;align-items:flex-end;gap:4px;padding:6px 14px 0;overflow-x:auto}
+.tools{display:flex;align-items:center;gap:8px;padding:0 12px 5px;flex:none}
+.helpb{width:30px;height:30px;padding:0;border-radius:50%;font-weight:700;color:var(--mut)}
+.bart{display:none;font-size:13px;padding:5px 10px}
+.hlist{list-style:none;margin:0 0 6px;padding:0}
+.hlist li{display:flex;flex-direction:column;gap:2px;padding:9px 0;border-top:1px solid var(--line);font-size:14px;line-height:1.5;color:var(--ink)}
+.hlist li:first-child{border-top:0}
+.hlist b{color:var(--blue)}
+.hlist span{color:#4b4753}
+@media(max-width:900px){
+  .bart{display:inline-block}
+  .top{padding:8px 12px 6px}.top p{display:none}.top h1 .wm{height:22px}.top h1 svg{width:22px;height:22px}
+  .bar{padding:6px 10px 8px;gap:6px 16px;flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .bar .grp{flex:none;flex-wrap:nowrap}
+  body.barhide .bar{display:none}
+}
 .tab{display:flex;align-items:center;gap:2px;padding:5px 6px 5px 12px;border:1px solid var(--line);border-bottom:none;border-radius:8px 8px 0 0;background:#ecEAF2;color:var(--mut);font-size:13.5px;cursor:pointer;white-space:nowrap;margin-bottom:-1px;touch-action:manipulation;user-select:none}
 .tab.on{background:#fff;color:var(--ink);font-weight:600;box-shadow:inset 0 2px 0 var(--acc)}
 .tab button{padding:0;width:22px;height:22px;line-height:1;border:none;background:transparent;border-radius:50%;font-size:14px;color:var(--mut)}
@@ -149,11 +167,9 @@ footer{text-align:center;font-size:12px;color:#b5b0bf;padding:18px 0 90px}
   </div>
   <div class="grp"><button id="clear">Clear all</button></div>
   <div class="grp"><button id="png">Download image</button></div>
-    <div class="help" id="help"><button aria-label="Help">?</button>
-      <div class="tip">Set your grid size, then click or drag across the squares to fill them in. Drag over filled squares to clear them again. Try the mesh brush for a special stitch or a pop of color. Use the + and − around the grid to add or remove rows and columns, Rotate to start from any corner, Select to fill, erase, move, copy and paste blocks, Add &rarr; Enter Text to turn a word or name into a draft pattern, Add &rarr; Border to frame your design, and the tabs above the grid to keep several designs going at once. When you're happy, download the image to print it or check off rows as you hook!</div>
-    </div>
 </div>
-<div class="tabs" id="tabs" role="tablist" aria-label="Designs"></div>
+<div class="trow"><div class="tabs" id="tabs" role="tablist" aria-label="Designs"></div>
+<div class="tools"><button id="bart" type="button" class="bart"></button><button id="helpb" type="button" class="helpb" aria-label="Help">?</button></div></div>
 </div>
 <main>
   <div class="stage">
@@ -172,7 +188,6 @@ footer{text-align:center;font-size:12px;color:#b5b0bf;padding:18px 0 90px}
   <span id="selmsg"></span>
   <span class="sg" id="g-sel"><button data-s="1">Fill</button><button data-s="2">Mesh</button><button data-s="0">Erase</button><button id="rotsel">Rotate</button><button id="copy">Copy</button></span>
   <button id="paste" hidden>Paste</button>
-  <button id="desel" hidden>Deselect</button>
   <span class="sg" id="g-flt" hidden><button id="rotflt">Rotate</button><label class="chk"><input type="checkbox" id="onlyempty"> Only into empty cells</label><button id="place" class="pri">Place</button><button id="cancelf">Cancel</button></span>
 </div>
 <div class="modal" id="txtm" hidden>
@@ -220,9 +235,10 @@ footer{text-align:center;font-size:12px;color:#b5b0bf;padding:18px 0 90px}
       <label id="impick" class="pri filebtn">Choose an image…<input type="file" id="imfile" accept="image/*,.png,.jpg,.jpeg,.webp,.gif"></label><span class="nt2">or drop a PNG / JPG here</span></div>
     <div id="imbody" hidden>
       <div class="hrow"><label style="flex:1">This picture is<select id="immode" style="display:block;margin-top:4px;font-size:16px;width:100%"><option value="grid">A chart with a grid (keep its squares)</option><option value="pic">A plain picture (make my own grid)</option></select></label></div>
-      <p id="imnote" style="margin:4px 0 10px;font-size:13px;color:var(--mut)"></p>
+      <p id="imnote" style="min-height:2.9em;margin:4px 0 10px;font-size:13px;color:var(--mut)"></p>
       <div class="hrow" id="impic" hidden>
         <label>Width (squares)<input type="number" id="imw" min="5" max="200" value="60"></label>
+        <label style="white-space:nowrap"><input type="checkbox" id="imtrim" checked style="display:inline;width:auto;margin:0 4px 0 0">Trim empty margins</label>
         <label>Style<select id="imstyle" style="display:block;margin-top:4px;font-size:16px"><option value="solid">Solid shapes</option><option value="line">Outline only</option></select></label>
       </div>
       <div class="hrow">
@@ -232,10 +248,18 @@ footer{text-align:center;font-size:12px;color:#b5b0bf;padding:18px 0 90px}
       <div class="hrow">
         <label>Put it<select id="imwhere" style="display:block;margin-top:4px;font-size:16px"><option value="tab">In a new tab</option><option value="here">On my current grid</option></select></label>
       </div>
-      <div class="pv" id="impv" style="gap:14px;justify-content:center;align-items:flex-start"><canvas id="imsrc"></canvas><canvas id="imout"></canvas></div>
+      <div class="pv" id="impv" style="gap:12px;justify-content:center;align-items:center;flex-direction:column"><canvas id="imsrc" style="cursor:crosshair;touch-action:none"></canvas><span class="nt2" style="align-self:flex-start">Drag on the picture to import only a part of it. Click once to use all of it.</span><div style="height:244px;display:flex;align-items:center;justify-content:center;max-width:100%;overflow:auto"><canvas id="imout"></canvas></div></div>
       <p style="margin:6px 0 0"><label id="imchg" class="filebtn">Choose another image<input type="file" id="imfile2" accept="image/*,.png,.jpg,.jpeg,.webp,.gif"></label></p>
     </div>
     <div class="acts"><button id="imcancel" type="button">Cancel</button><button id="imgo" type="button" class="pri" disabled>Import</button></div>
+  </div>
+</div>
+<div class="modal" id="hm" hidden>
+  <div class="card" role="dialog" aria-label="Help" style="max-height:calc(100vh - 32px);overflow:auto">
+    <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:8px"><h2 id="hmtitle" style="flex:1;margin:0"></h2><button id="hmlang" type="button" style="white-space:nowrap"></button></div>
+    <p id="hmnote" style="margin:0 0 12px;padding:9px 12px;background:#eef0fa;border-radius:8px;color:var(--blue);font-size:13.5px;line-height:1.45"></p>
+    <ul id="hmlist" class="hlist"></ul>
+    <div class="acts"><button id="hmclose" type="button" class="pri"></button></div>
   </div>
 </div>
 <div class="modal" id="cm" hidden>
@@ -430,6 +454,7 @@ document.querySelectorAll('[data-b]').forEach(b=>b.onclick=()=>{brush=+b.dataset
   document.querySelectorAll('[data-b]').forEach(o=>o.classList.toggle('on',o===b))});
 document.querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>edge(b.dataset.e,b.dataset.a==='1'));
 function edge(s,add){
+  if(flt)return edgeFloat(s,add);
   nf();
   if(!add){
     if((s==='top'||s==='bottom')?H<=1:W<=1)return say('The grid needs at least one row and one column.');
@@ -438,6 +463,20 @@ function edge(s,add){
     if(f.some(v=>v))return ask(`The ${name} has stitches in it. Delete it anyway?`,'Delete',()=>edge2(s,add));
   }
   edge2(s,add)}
+function edgeFloat(s,add){
+  const vert=s==='top'||s==='bottom',bw=flt.buf[0].length,bh=flt.buf.length;
+  if(!add){
+    if(vert?H-1<bh:W-1<bw)return say('The block you are placing needs this space. Move it first, or Cancel.');
+    const f={top:()=>g[0],bottom:()=>g[H-1],left:()=>g.map(r=>r[0]),right:()=>g.map(r=>r[W-1])}[s]();
+    if(f.some(v=>v))return say('That row or column has stitches in it. Cancel first if you want to delete it.')}
+  if(!flt.pushed){push();flt.pushed=true}
+  if(s==='top')add?g.unshift(Array(W).fill(0)):g.shift();
+  else if(s==='bottom')add?g.push(Array(W).fill(0)):g.pop();
+  else if(s==='left')g.forEach(r=>add?r.unshift(0):r.shift());
+  else g.forEach(r=>add?r.push(0):r.pop());
+  H=g.length;W=g[0].length;
+  if(s==='top')flt.y+=add?1:-1;if(s==='left')flt.x+=add?1:-1;
+  flt.x=cl(flt.x,0,W-bw);flt.y=cl(flt.y,0,H-bh);sync()}
 function edge2(s,add){
   push();sel=null;
   if(s==='top')add?g.unshift(Array(W).fill(0)):g.shift();
@@ -460,17 +499,52 @@ $('new').onclick=()=>{nf();const w=Math.min(200,Math.max(1,+$('nw').value||30)),
 $('clear').onclick=()=>{nf();if(!has())return;ask('Clear every stitch on the grid? You can undo this.','Clear all',()=>{push();g=blank(W,H);sync()})};
 $('rot').onclick=()=>{nf();push();sel=null;g=Array.from({length:W},(_,r)=>Array.from({length:H},(_,c)=>g[H-1-c][r]));rot=(rot+1)%4;sync()};
 document.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>fillSel(+b.dataset.s));
-$('desel').onclick=()=>{sel=null;sync()};
-$('help').onclick=e=>{e.stopPropagation();$('help').classList.toggle('show')};
-document.addEventListener('click',()=>$('help').classList.remove('show'));
 
+/* ---------- Help (EN / 한글) ---------- */
+const HELP={
+ en:{title:'How to use Crochet Studio',lang:'한글',note:'Crochet Studio works best in a web browser on a computer. Tablets and phones work too, but the screen is smaller.',
+  items:[
+   ['Make a grid','Type a width and height next to New grid, then press Create. Click or drag across squares to fill them. Drag over filled squares to clear them.'],
+   ['Brushes','Filled and Mesh paint squares, Erase clears them, and Select lets you pick a block of squares.'],
+   ['Select a block','With Select, drag over the grid. Then Fill, Mesh, Erase, Rotate or Copy what you picked. After Copy, press Paste, drag to place it, then press Place.'],
+   ['Add things (Add menu)','Enter Text turns a word or name into a pattern. Border frames your design. Image turns a picture, or a chart with a grid, into a pattern.'],
+   ['Change the size','The + and − buttons around the grid add or remove rows and columns. You can also use them while a text or pasted block is waiting to be placed.'],
+   ['Rotate and undo','Rotate turns the whole grid so you can start from any corner. Undo and Redo step through your changes.'],
+   ['Several designs','Use the tabs to keep more than one design. Click the name of the open tab to rename it.'],
+   ['Count your chain','Under the grid, “How is this counted?” explains the foundation chain for your stitch.'],
+   ['Save and print','Download image saves a picture of your chart. Your work is also kept in this browser automatically.']]},
+ ko:{title:'Crochet Studio 사용법',lang:'EN',note:'Crochet Studio는 컴퓨터 웹 브라우저에서 가장 잘 작동해요. 태블릿과 휴대폰에서도 쓸 수 있지만 화면이 작아요.',
+  items:[
+   ['그리드 만들기','New grid 옆에 가로·세로 칸 수를 넣고 Create를 누르세요. 칸을 클릭하거나 드래그하면 채워지고, 채워진 칸 위로 드래그하면 지워져요.'],
+   ['브러시','Filled와 Mesh는 칸을 칠하고, Erase는 지우고, Select는 칸 묶음을 선택해요.'],
+   ['영역 선택','Select를 켜고 그리드 위를 드래그하세요. 선택한 영역은 Fill, Mesh, Erase, Rotate, Copy로 바꿀 수 있어요. Copy한 뒤 Paste를 누르고, 드래그해서 위치를 정한 다음 Place를 누르세요.'],
+   ['추가하기 (Add 메뉴)','Enter Text는 글자나 이름을 도안으로 바꿔 주고, Border는 도안에 테두리를 둘러요. Image는 사진이나 격자가 있는 차트 이미지를 도안으로 바꿔요.'],
+   ['크기 바꾸기','그리드 주변의 + 와 − 버튼으로 행과 열을 더하거나 뺄 수 있어요. 글자나 붙여넣을 블록을 올려놓은 상태에서도 쓸 수 있어요.'],
+   ['회전과 되돌리기','Rotate는 그리드 전체를 돌려서 어느 모서리에서든 시작할 수 있게 해요. Undo와 Redo로 변경을 되돌리거나 다시 해요.'],
+   ['여러 도안','탭으로 도안을 여러 개 만들 수 있어요. 열려 있는 탭의 이름을 클릭하면 이름을 바꿀 수 있어요.'],
+   ['시작 사슬 세기','그리드 아래 “How is this counted?”에서 내 뜨개 방식에 맞는 시작 사슬 수를 확인하세요.'],
+   ['저장과 인쇄','Download image는 차트를 그림으로 저장해요. 작업 내용은 이 브라우저에 자동으로 저장돼요.']]}};
+let helpLang='en';try{helpLang=localStorage.getItem('crochet-lang')==='ko'?'ko':'en'}catch(e){}
+function helpRender(){
+  const h=HELP[helpLang];$('hmtitle').textContent=h.title;$('hmlang').textContent=h.lang;$('hmnote').textContent=h.note;
+  $('hmlist').innerHTML=h.items.map(([a,b])=>`<li><b>${esc(a)}</b><span>${esc(b)}</span></li>`).join('');
+  $('hmclose').textContent=helpLang==='ko'?'닫기':'Got it'}
+$('helpb').onclick=()=>{nf();helpRender();$('hm').hidden=false};
+$('hmlang').onclick=()=>{helpLang=helpLang==='ko'?'en':'ko';try{localStorage.setItem('crochet-lang',helpLang)}catch(e){}helpRender()};
+$('hmclose').onclick=()=>{$('hm').hidden=true};
+$('hm').addEventListener('click',e=>{if(e.target===$('hm'))$('hm').hidden=true});
+/* collapsible tools on small screens */
+let barOpen=true;try{barOpen=localStorage.getItem('crochet-bar')!=='0'}catch(e){}
+function barApply(){document.body.classList.toggle('barhide',!barOpen);$('bart').textContent=barOpen?'Hide menu ▲':'Menu ▼';setTimeout(placeTop,0)}
+$('bart').onclick=()=>{barOpen=!barOpen;try{localStorage.setItem('crochet-bar',barOpen?'1':'0')}catch(e){}barApply()};
+barApply();
 /* copy / paste / floating block */
 const cl=(v,a,b)=>Math.max(a,Math.min(b,v));
 const nf=()=>{if(flt)cancelFloat()};
 function bar(){
   const show=brush===3||!!flt;$('selbar').hidden=!show;if(!show)return;
-  $('g-sel').hidden=!!flt||!sel;$('desel').hidden=!!flt||!sel;$('paste').hidden=!clip||!!flt;$('g-flt').hidden=!flt;
-  $('selmsg').textContent=note||(flt?'Drag to position it':sel?`Selection ${sel.x1-sel.x0+1}×${sel.y1-sel.y0+1}`:'Drag over the grid to select')}
+  $('g-sel').hidden=!!flt||!sel;$('paste').hidden=!clip||!!flt;$('g-flt').hidden=!flt;
+  $('selmsg').textContent=note||(flt?'Drag to position it. Use the + buttons around the grid to make room.':sel?`Selection ${sel.x1-sel.x0+1}×${sel.y1-sel.y0+1}`:'Drag over the grid to select')}
 function copySel(){if(!sel)return;clip=cut();note=`Copied ${sel.x1-sel.x0+1}×${sel.y1-sel.y0+1}`;bar();setTimeout(()=>{note='';bar()},1400)}
 function startFloat(buf,x,y,pushed){flt={buf,x:cl(x,0,W-buf[0].length),y:cl(y,0,H-buf.length),pushed:!!pushed};sel=null;sync()}
 function pasteClip(){
@@ -489,11 +563,16 @@ const rotBuf=b=>Array.from({length:b[0].length},(_,r)=>Array.from({length:b.leng
 function rotSel(){
   if(!sel)return;const w=sel.x1-sel.x0+1,h=sel.y1-sel.y0+1;
   if(h>W||w>H)return say('Rotated, the block would be bigger than the grid. Add rows or columns first.');
-  const blk=[];for(let y=sel.y0;y<=sel.y1;y++)blk.push(g[y].slice(sel.x0,sel.x1+1));
-  const rb=rotBuf(blk),nx=cl(Math.round(sel.x0+(w-h)/2),0,W-h),ny=cl(Math.round(sel.y0+(h-w)/2),0,H-w);
-  push();for(let y=sel.y0;y<=sel.y1;y++)for(let x=sel.x0;x<=sel.x1;x++)g[y][x]=0;
+  /* lift the selected cells once; the rest of the grid is kept aside and put back whenever the block turns away from it */
+  let L=sel.lift;
+  if(!L||L.stamp!==undo.length){
+    const buf=[];for(let y=sel.y0;y<=sel.y1;y++)buf.push(g[y].slice(sel.x0,sel.x1+1));
+    const base=g.map(r=>r.slice());for(let y=sel.y0;y<=sel.y1;y++)for(let x=sel.x0;x<=sel.x1;x++)base[y][x]=0;
+    L=sel.lift={base,buf}}
+  const rb=rotBuf(L.buf),nx=cl(Math.round(sel.x0+(w-h)/2),0,W-h),ny=cl(Math.round(sel.y0+(h-w)/2),0,H-w);
+  push();g=L.base.map(r=>r.slice());
   rb.forEach((row,j)=>row.forEach((v,i)=>{if(v)g[ny+j][nx+i]=v}));
-  sel={x0:nx,y0:ny,x1:nx+h-1,y1:ny+w-1};sync()}
+  L.buf=rb;sel.x0=nx;sel.y0=ny;sel.x1=nx+h-1;sel.y1=ny+w-1;L.stamp=undo.length;sync()}
 function rotFloat(){
   if(!flt)return;const b=flt.buf,w=b[0].length,h=b.length;if(h>W||w>H)return say('Rotated, the block would be bigger than the grid.');
   flt.x=cl(Math.round(flt.x+(w-h)/2),0,W-h);flt.y=cl(Math.round(flt.y+(h-w)/2),0,H-w);flt.buf=rotBuf(b);sync()}
@@ -1076,36 +1155,54 @@ function imFitFrom(s,len,L,ac,maxL,at,peak,top){
   for(let k=0;k<=ms.length;k++){
     if(k<ms.length&&pres[k]){if(a<0){a=k;cnt=0}cnt++;gap=0;if(!best||cnt>best.c)best={a,b:k,c:cnt};
       if(best&&best.a===a)best.b=k}
-    else if(a>=0){gap++;if(gap>3||k===ms.length){a=-1}}}
+    else if(a>=0){gap++;if(gap>20||k===ms.length){a=-1}}}
   if(!best||best.b-best.a<4)return null;
   return{p,o,k0:best.a,k1:best.b}}
 /* picture -> {fx,fy,nx,ny} when it already shows a grid */
-function imDetect(gr,w,h){
+function imDetect(gr,w,h,noGrow){
   const P=4,w2=w+2*P,h2=h+2*P,pg=new Float32Array(w2*h2).fill(255);
   for(let y=0;y<h;y++)pg.set(gr.subarray(y*w,y*w+w),(y+P)*w2+P);
   const fx=imFit(imProfile(pg,w2,h2,true),w2),fy=imFit(imProfile(pg,w2,h2,false),h2);
   if(!fx||!fy)return null;
   fx.o-=P;fy.o-=P;
+  if(!noGrow)imGrow(gr,w,h,fx,fy);
   return{fx,fy,nx:fx.k1-fx.k0,ny:fy.k1-fy.k0}}
+/* average darkness of the square between lines kx..kx+1 and ky..ky+1 (255 when it lies outside the picture) */
+function imCellMean(gr,w,h,fx,fy,kx,ky){
+  const xa=fx.o+kx*fx.p,xb=xa+fx.p,ya=fy.o+ky*fy.p,yb=ya+fy.p,mx=fx.p*.25,my=fy.p*.25;
+  if(xa<-1||ya<-1||xb>w+1||yb>h+1)return 255;
+  let x0=Math.round(xa+mx),x1=Math.round(xb-mx),y0=Math.round(ya+my),y1=Math.round(yb-my);
+  if(x1<=x0)x1=x0+1;if(y1<=y0)y1=y0+1;
+  x0=Math.max(0,x0);y0=Math.max(0,y0);x1=Math.min(w,x1);y1=Math.min(h,y1);
+  let s=0,n=0;for(let y=y0;y<y1;y++)for(let x=x0;x<x1;x++){s+=gr[y*w+x];n++}
+  return n?s/n:255}
+/* lines can fade out where the chart is solid or faint: keep growing the grid while there are still filled squares beyond it */
+function imGrow(gr,w,h,fx,fy){
+  const dark=(kx,ky)=>imCellMean(gr,w,h,fx,fy,kx,ky)<110;
+  /* a row or column only counts when a real run of squares is filled, not a lone arrow or label */
+  const rowHas=ky=>{let c=0;for(let kx=fx.k0;kx<fx.k1;kx++)if(dark(kx,ky))c++;return c>=Math.max(3,.12*(fx.k1-fx.k0))};
+  const colHas=kx=>{let c=0;for(let ky=fy.k0;ky<fy.k1;ky++)if(dark(kx,ky))c++;return c>=Math.max(3,.12*(fy.k1-fy.k0))};
+  const grow=(has,get,set,dir,lim)=>{const k0=get(),cap=Math.max(2,Math.round(Math.abs(fy.k1-fy.k0+fx.k1-fx.k0)/4));let k=k0+(dir>0?0:-1),last=null,gap=0;
+    while(gap<=0&&lim(k)&&Math.abs(k-k0)<=cap){if(has(k)){last=k;gap=0}else gap++;k+=dir}
+    if(last!==null)set(dir>0?last+1:last)};
+  for(let it=0;it<2;it++){
+    const maxKy=Math.floor((h-fy.o)/fy.p),minKy=Math.ceil(-fy.o/fy.p),maxKx=Math.floor((w-fx.o)/fx.p),minKx=Math.ceil(-fx.o/fx.p);
+    grow(rowHas,()=>fy.k1,v=>{fy.k1=v},1,k=>k<maxKy);
+    grow(rowHas,()=>fy.k0,v=>{fy.k0=v},-1,k=>k>=minKy);
+    grow(colHas,()=>fx.k1,v=>{fx.k1=v},1,k=>k<maxKx);
+    grow(colHas,()=>fx.k0,v=>{fx.k0=v},-1,k=>k>=minKx)}}
 /* average darkness of every square (0 dark .. 255 light) */
 function imCells(gr,w,h,d){
   const out=[];
   for(let j=0;j<d.ny;j++){const row=[];
-    const ya=d.fy.o+(d.fy.k0+j)*d.fy.p,yb=ya+d.fy.p,my=d.fy.p*.25;
-    for(let i=0;i<d.nx;i++){
-      const xa=d.fx.o+(d.fx.k0+i)*d.fx.p,xb=xa+d.fx.p,mx=d.fx.p*.25;
-      let x0=Math.round(xa+mx),x1=Math.round(xb-mx),y0=Math.round(ya+my),y1=Math.round(yb-my);
-      if(x1<=x0)x1=x0+1;if(y1<=y0)y1=y0+1;
-      x0=Math.max(0,x0);y0=Math.max(0,y0);x1=Math.min(w,x1);y1=Math.min(h,y1);
-      let s=0,n=0;for(let y=y0;y<y1;y++)for(let x=x0;x<x1;x++){s+=gr[y*w+x];n++}
-      row.push(n?s/n:255)}
+    for(let i=0;i<d.nx;i++)row.push(imCellMean(gr,w,h,d.fx,d.fy,d.fx.k0+i,d.fy.k0+j));
     out.push(row)}
   return out}
 /* any picture -> nw x nh average darkness */
-function imShrink(gr,w,h,nw,nh){
-  const out=[];
-  for(let j=0;j<nh;j++){const row=[],y0=Math.floor(j*h/nh),y1=Math.max(y0+1,Math.floor((j+1)*h/nh));
-    for(let i=0;i<nw;i++){const x0=Math.floor(i*w/nw),x1=Math.max(x0+1,Math.floor((i+1)*w/nw));
+function imShrink(gr,w,h,nw,nh,r){
+  r=r||{x:0,y:0,w,h};const out=[];
+  for(let j=0;j<nh;j++){const row=[],y0=r.y+Math.floor(j*r.h/nh),y1=Math.max(y0+1,r.y+Math.floor((j+1)*r.h/nh));
+    for(let i=0;i<nw;i++){const x0=r.x+Math.floor(i*r.w/nw),x1=Math.max(x0+1,r.x+Math.floor((i+1)*r.w/nw));
       let s=0,n=0;for(let y=y0;y<y1&&y<h;y++)for(let x=x0;x<x1&&x<w;x++){s+=gr[y*w+x];n++}
       row.push(n?s/n:255)}
     out.push(row)}
@@ -1117,6 +1214,13 @@ function imBinary(m,thr,inv,line,mesh){
     let on=v;
     if(on&&line){const e=(y,x)=>y>=0&&y<nh&&x>=0&&x<nw&&f[y][x];on=!(e(j-1,i)&&e(j+1,i)&&e(j,i-1)&&e(j,i+1))}
     return on?1:(mesh?2:0)}))}
+/* the box around everything that is dark (or light when swapped), so empty margins do not eat the grid */
+function imBox(gr,w,h,thr,inv){
+  const rows=new Uint8Array(h),cols=new Uint8Array(w);
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){if((gr[y*w+x]<=thr)!==!!inv){rows[y]=1;cols[x]=1}}
+  const f=a=>{let i=0,j=a.length-1;while(i<a.length&&!a[i])i++;while(j>=0&&!a[j])j--;return j>=i?[i,j]:null};
+  const ry=f(rows),rx=f(cols);
+  return ry&&rx?{x:rx[0],y:ry[0],w:rx[1]-rx[0]+1,h:ry[1]-ry[0]+1}:{x:0,y:0,w,h}}
 const IM={};
 function imOpen(){nf();IM.gray=null;$('imbody').hidden=true;$('imgo').disabled=true;$('imdrop').hidden=false;$('im').hidden=false}
 function imClose(){$('im').hidden=true}
@@ -1131,38 +1235,64 @@ function imLoad(file){
       c.width=w;c.height=h;const x=c.getContext('2d');x.drawImage(img,0,0,w,h);
       let d;try{d=x.getImageData(0,0,w,h)}catch(e){return say("Couldn't read that picture. Try a PNG or JPG.")}
       IM.cv=c;IM.w=w;IM.h=h;IM.gray=imGray(d.data,w,h);IM.name=(file.name||'').replace(/\.[^.]+$/,'').replace(/[^\w\- ]+/g,' ').trim().slice(0,20);
-      IM.det=imDetect(IM.gray,w,h);IM.auto={};IM.cells=null;IM.pkey=null;
+      IM.det=imDetect(IM.gray,w,h);IM.auto={};IM.sel=null;IM.cells=null;IM.pkey=null;
       $('immode').value=IM.det?'grid':'pic';$('imdrop').hidden=true;$('imbody').hidden=false;imRun(true)};
     img.onerror=()=>say("Couldn't open that file. Try a PNG or JPG picture.");
     img.src=fr.result};
   fr.readAsDataURL(file)}
 function imRun(modeChanged){
   if(!IM.gray)return;
-  const mode=$('immode').value,isGrid=mode==='grid';let m=null,note='';
+  if(modeChanged)IM.sel=null;
+  const mode=$('immode').value,isGrid=mode==='grid',d=IM.det;let m=null,note='',box=null;
   $('impic').hidden=isGrid;
   if(isGrid){
-    if(!IM.det)note='No grid found in this picture. Choose "Plain picture" to make your own grid.';
-    else if(IM.det.nx>200||IM.det.ny>200)note=`This chart is ${IM.det.nx} × ${IM.det.ny} squares. The most this app can hold is 200 in each direction.`;
-    else{if(!IM.cells)IM.cells=imCells(IM.gray,IM.w,IM.h,IM.det);m=IM.cells;
-      note=`Grid found: ${IM.det.nx} × ${IM.det.ny} squares. Your chart keeps exactly this size.`}}
+    if(!d)note='No grid found in this picture. Choose "A plain picture" to make your own grid.';
+    else{
+      if(!IM.cells)IM.cells=imCells(IM.gray,IM.w,IM.h,d);
+      const q=IM.sel||{i0:0,j0:0,i1:d.nx-1,j1:d.ny-1},cw=q.i1-q.i0+1,ch=q.j1-q.j0+1;
+      if(cw>200||ch>200)note=`This part is ${cw} × ${ch} squares. The most this app can hold is 200 in each direction. Drag on the picture to pick a smaller part.`;
+      else{m=IM.sel?IM.cells.slice(q.j0,q.j1+1).map(r=>r.slice(q.i0,q.i1+1)):IM.cells;
+        note=IM.sel?`Picked ${cw} × ${ch} squares from the chart.`:`Grid found: ${d.nx} × ${d.ny} squares. Your chart keeps exactly this size.`}}}
   else{
-    let nw=Math.max(5,Math.min(200,Math.round(+$('imw').value||60))),nh=Math.max(1,Math.round(nw*IM.h/IM.w));
-    if(nh>200){nh=200;nw=Math.max(1,Math.round(nh*IM.w/IM.h))}
-    const key=nw+'x'+nh;if(IM.pkey!==key){IM.pkey=key;IM.pm=imShrink(IM.gray,IM.w,IM.h,nw,nh)}
+    if(!IM.autoT&&IM.autoT!==0)IM.autoT=imOtsu(Array.from(IM.gray.filter((_,i)=>i%7===0)));
+    const pt=Math.max(0,Math.min(255,(IM.autoT||128)+(+$('imthr').value-50)*1.6));
+    box=IM.sel?{x:Math.round(IM.sel.x0),y:Math.round(IM.sel.y0),w:Math.max(1,Math.round(IM.sel.x1-IM.sel.x0)),h:Math.max(1,Math.round(IM.sel.y1-IM.sel.y0))}
+      :$('imtrim').checked?imBox(IM.gray,IM.w,IM.h,Math.min(pt,200),$('iminv').checked):{x:0,y:0,w:IM.w,h:IM.h};
+    let nw=Math.max(5,Math.min(200,Math.round(+$('imw').value||60))),nh=Math.max(1,Math.round(nw*box.h/box.w));
+    if(nh>200){nh=200;nw=Math.max(1,Math.round(nh*box.w/box.h))}
+    const key=[nw,nh,box.x,box.y,box.w,box.h].join('x');if(IM.pkey!==key){IM.pkey=key;IM.pm=imShrink(IM.gray,IM.w,IM.h,nw,nh,box)}
     m=IM.pm;note=`Made a new grid: ${nw} × ${nh} squares. Change the width to make it finer or coarser.`}
-  if(m&&(modeChanged||IM.auto.mode!==mode)){IM.auto.mode=mode;const t=imOtsu(m.flat());IM.autoT=t;$('imthr').value=50}
+  if(m&&(modeChanged||IM.auto.mode!==mode)){IM.auto.mode=mode;const t=imOtsu((isGrid?IM.cells:m).flat());IM.autoT=t;$('imthr').value=50;if(modeChanged&&!isGrid)return imRun()}
   const out=m?imBinary(m,Math.max(0,Math.min(255,(IM.autoT||128)+(+$('imthr').value-50)*1.6)),$('iminv').checked,!isGrid&&$('imstyle').value==='line',false):null;
   IM.out=out;$('imnote').textContent=note;$('imgo').disabled=!out;
-  /* previews */
-  const s=$('imsrc'),sc=Math.min(150/IM.w,230/IM.h),sw=Math.round(IM.w*sc),sh=Math.round(IM.h*sc),r=window.devicePixelRatio||1,x=s.getContext('2d');
+  /* source picture with the grid and the picked part */
+  const s=$('imsrc'),sc=IM.sc=Math.min(380/IM.w,260/IM.h),sw=Math.round(IM.w*sc),sh=Math.round(IM.h*sc),r=window.devicePixelRatio||1,x=s.getContext('2d');
   s.width=sw*r;s.height=sh*r;s.style.width=sw+'px';s.style.height=sh+'px';x.setTransform(r,0,0,r,0,0);
   x.drawImage(IM.cv,0,0,sw,sh);
-  if(isGrid&&IM.det){const d=IM.det;x.strokeStyle='rgba(220,40,80,.8)';x.lineWidth=1;x.beginPath();
+  let hl=null;
+  if(isGrid&&d){x.strokeStyle='rgba(220,40,80,.8)';x.lineWidth=1;x.beginPath();
     for(let k=d.fx.k0;k<=d.fx.k1;k++){const px=(d.fx.o+k*d.fx.p)*sc;x.moveTo(px,(d.fy.o+d.fy.k0*d.fy.p)*sc);x.lineTo(px,(d.fy.o+d.fy.k1*d.fy.p)*sc)}
     for(let k=d.fy.k0;k<=d.fy.k1;k++){const py=(d.fy.o+k*d.fy.p)*sc;x.moveTo((d.fx.o+d.fx.k0*d.fx.p)*sc,py);x.lineTo((d.fx.o+d.fx.k1*d.fx.p)*sc,py)}
-    x.stroke()}
+    x.stroke();
+    if(IM.sel){const q=IM.sel;hl=[(d.fx.o+(d.fx.k0+q.i0)*d.fx.p)*sc,(d.fy.o+(d.fy.k0+q.j0)*d.fy.p)*sc,(q.i1-q.i0+1)*d.fx.p*sc,(q.j1-q.j0+1)*d.fy.p*sc]}}
+  else if(!isGrid&&box&&(IM.sel||box.w<IM.w||box.h<IM.h))hl=[box.x*sc,box.y*sc,box.w*sc,box.h*sc];
+  if(hl){x.fillStyle='rgba(255,255,255,.7)';x.beginPath();x.rect(0,0,sw,sh);x.rect(hl[0],hl[1],hl[2],hl[3]);x.fill('evenodd');
+    x.setLineDash([5,3]);x.strokeStyle='#2d3563';x.lineWidth=2;x.strokeRect(hl[0],hl[1],hl[2],hl[3]);x.setLineDash([])}
   const c=$('imout');
-  if(out){const cs=Math.max(1,Math.min(14,Math.floor(220/out[0].length),Math.floor(240/out.length)));paintGrid(c,out,cs,cs>=6)}else clearCanvas(c)}
+  if(out){const cs=Math.max(1,Math.min(14,Math.floor(380/out[0].length),Math.floor(240/out.length)));paintGrid(c,out,cs,cs>=6)}else clearCanvas(c)}
+/* drag on the picture to pick just a part of it */
+function imPt(e){const r=$('imsrc').getBoundingClientRect();return[Math.max(0,Math.min(IM.w,(e.clientX-r.left)/IM.sc)),Math.max(0,Math.min(IM.h,(e.clientY-r.top)/IM.sc))]}
+function imPick(){
+  const a=IM.a,b=IM.b,d=IM.det,grid=$('immode').value==='grid';
+  if(grid){if(!d)return;
+    const ci=v=>Math.max(0,Math.min(d.nx-1,Math.floor((v-d.fx.o)/d.fx.p)-d.fx.k0)),cj=v=>Math.max(0,Math.min(d.ny-1,Math.floor((v-d.fy.o)/d.fy.p)-d.fy.k0));
+    IM.sel={i0:Math.min(ci(a[0]),ci(b[0])),i1:Math.max(ci(a[0]),ci(b[0])),j0:Math.min(cj(a[1]),cj(b[1])),j1:Math.max(cj(a[1]),cj(b[1]))}}
+  else IM.sel={x0:Math.min(a[0],b[0]),x1:Math.max(a[0],b[0]),y0:Math.min(a[1],b[1]),y1:Math.max(a[1],b[1])};
+  imRun()}
+$('imsrc').addEventListener('pointerdown',e=>{if(!IM.gray)return;e.preventDefault();try{$('imsrc').setPointerCapture(e.pointerId)}catch(x){}IM.a=IM.b=imPt(e);IM.dn=true;IM.moved=false});
+$('imsrc').addEventListener('pointermove',e=>{if(!IM.dn)return;IM.b=imPt(e);if(Math.abs(IM.b[0]-IM.a[0])*IM.sc>4||Math.abs(IM.b[1]-IM.a[1])*IM.sc>4)IM.moved=true;if(IM.moved)imPick()});
+const imUp=()=>{if(!IM.dn)return;IM.dn=false;if(!IM.moved){IM.sel=null;imRun()}};
+$('imsrc').addEventListener('pointerup',imUp);$('imsrc').addEventListener('pointercancel',imUp);
 function imApply(){
   const b=IM.out;if(!b)return;imClose();
   if($('imwhere').value==='tab'&&tabs.length<12){
@@ -1177,7 +1307,7 @@ $('im').addEventListener('click',e=>{if(e.target===$('im'))imClose()});
 $('im').addEventListener('dragover',e=>e.preventDefault());
 $('im').addEventListener('drop',e=>{e.preventDefault();const f=e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files[0];if(f)imLoad(f)});
 ['immode','imstyle','imwhere'].forEach(i=>$(i).addEventListener('change',()=>imRun(i==='immode')));
-['iminv'].forEach(i=>$(i).addEventListener('change',()=>imRun()));
+['iminv','imtrim'].forEach(i=>$(i).addEventListener('change',()=>imRun()));
 $('imthr').addEventListener('input',()=>imRun());
 $('imw').addEventListener('input',()=>imRun());
 $('txt').onclick=()=>{nf();$('txtm').hidden=false;$('ttxt').focus();tUpdate()};
