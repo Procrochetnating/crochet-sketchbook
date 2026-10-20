@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crochet Studio – Free Filet Crochet Pattern Maker</title>
+<meta name="description" content="Design filet crochet charts right in your browser. Click and drag to draw, add text and borders, and save your pattern as an image. Free, no sign-up.">
+<link rel="canonical" href="https://procrochetnating.github.io/crochet-studio/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232d3563'/%3E%3Cg fill='%23fff'%3E%3Crect x='15.2' y='4.0' width='5.2' height='5.2'/%3E%3Crect x='9.6' y='9.6' width='5.2' height='5.2'/%3E%3Crect x='15.2' y='9.6' width='5.2' height='5.2'/%3E%3Crect x='20.8' y='9.6' width='5.2' height='5.2'/%3E%3Crect x='4.0' y='15.2' width='5.2' height='5.2'/%3E%3Crect x='9.6' y='15.2' width='5.2' height='5.2'/%3E%3Crect x='20.8' y='15.2' width='5.2' height='5.2'/%3E%3Crect x='26.4' y='15.2' width='5.2' height='5.2'/%3E%3Crect x='9.6' y='20.8' width='5.2' height='5.2'/%3E%3Crect x='15.2' y='20.8' width='5.2' height='5.2'/%3E%3Crect x='20.8' y='20.8' width='5.2' height='5.2'/%3E%3Crect x='15.2' y='26.4' width='5.2' height='5.2'/%3E%3C/g%3E%3C/svg%3E">
+<meta name="theme-color" content="#2d3563">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Crochet Studio">
+<meta property="og:title" content="Crochet Studio – Free Filet Crochet Pattern Maker">
+<meta property="og:description" content="Free filet crochet pattern maker. Simply click, drag, and grab your hook! Draw charts, add text and borders, and download them as images.">
+<meta property="og:url" content="https://procrochetnating.github.io/crochet-studio/">
+<meta property="og:image" content="https://procrochetnating.github.io/crochet-studio/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Crochet Studio – Free Filet Crochet Pattern Maker">
+<meta name="twitter:description" content="Free filet crochet pattern maker. Simply click, drag, and grab your hook! Draw charts, add text and borders, and download them as images.">
+<meta name="twitter:image" content="https://procrochetnating.github.io/crochet-studio/og-image.png">
+<style>
+:root{--panel:#fff;--ink:#26232b;--mut:#8b8695;--line:#dcd8e3;--acc:#3f4a8a;--blue:#2d3563}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:"Avenir Next",Avenir,"Segoe UI",system-ui,sans-serif;color:var(--ink);background-color:#f4f3f8;
+  background-image:linear-gradient(#e7e4ee 1px,transparent 1px),linear-gradient(90deg,#e7e4ee 1px,transparent 1px);background-size:26px 26px}
+.top{text-align:center;padding:22px 14px 14px;background:var(--panel)}
+.top h1{margin:0;font-size:32px;font-weight:500;font-style:italic;letter-spacing:.2px;display:inline-flex;align-items:center;gap:12px}
+.top p{margin:4px 0 0;color:var(--mut);font-size:15px}
+.top h1 .wm{display:block;height:30px;width:auto;image-rendering:auto}
+.hdr{position:sticky;top:0;z-index:5;background:var(--panel)}
+.bar{position:relative;background:var(--panel);border-bottom:1px solid var(--line);padding:6px 56px 14px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px;align-items:center}
+.grp{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.grp>span{font-size:13px;color:var(--mut);margin-right:2px}
+button{font:inherit;font-size:14px;padding:7px 11px;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:6px;cursor:pointer}
+button:hover{background:#f0eef5}
+button:focus-visible,input:focus-visible{outline:2px solid var(--acc);outline-offset:1px}
+button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.ico{display:inline-flex;align-items:center;gap:6px;padding:7px 9px}
+.ico svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+input[type=number]{width:60px;font:inherit;padding:6px;border:1px solid var(--line);border-radius:6px}
+#png{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:600}
+#png:hover{background:#232a52}
+.help{position:absolute;right:14px;bottom:10px}
+.help>button{width:32px;height:32px;padding:0;border-radius:50%;font-weight:700;color:var(--mut)}
+.tip{display:none;position:absolute;right:0;top:calc(100% + 12px);width:290px;background:var(--ink);color:#fff;padding:13px 15px;border-radius:10px;font-size:13.5px;line-height:1.55;text-align:left;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.help:hover .tip,.help.show .tip{display:block}
+main{padding:62px 100px 8px;overflow:auto}
+@media(max-width:760px){main{padding:62px 12px 8px}}
+.stage{display:grid;grid-template-columns:auto;align-items:center;justify-items:center;width:max-content;margin:0 auto}
+canvas{display:block;background:#fff;border:1px solid var(--line);touch-action:none;cursor:crosshair}
+.ed{display:flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:12px;color:var(--mut)}
+.ed.v{flex-direction:column;border-radius:14px;padding:8px 10px}
+.ed.v>span{text-align:center;line-height:1.25}
+.ed button{width:30px;height:30px;padding:0;font-size:17px;line-height:1}
+.ed{position:fixed;z-index:4;box-shadow:0 4px 16px rgba(0,0,0,.12)}
+.ed.t{left:50%;top:150px;transform:translateX(-50%)}.ed.b{left:50%;bottom:16px;transform:translateX(-50%)}
+.ed.l{left:12px;top:50%;transform:translateY(-50%)}.ed.r{right:12px;top:50%;transform:translateY(-50%)}
+#info{text-align:center;font-size:13px;color:var(--mut);margin-top:14px}
+.zoom{position:fixed;bottom:16px;right:16px;z-index:4;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 18px;display:flex;align-items:center;gap:10px;font-size:15px;color:var(--mut);box-shadow:0 4px 16px rgba(0,0,0,.12)}
+.selbar{position:fixed;bottom:72px;left:50%;transform:translateX(-50%);z-index:4;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mut);box-shadow:0 4px 16px rgba(0,0,0,.12)}
+.selbar[hidden]{display:none}
+.selbar button{padding:5px 12px;border-radius:999px}
+footer .soc{display:flex;justify-content:center;gap:16px;margin-top:10px}
+footer .soc a{display:inline-flex;padding:6px;margin:-6px}footer .soc a:hover svg{stroke:var(--acc)}
+footer .soc svg{width:18px;height:18px;fill:none;stroke:#b5b0bf;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+footer{text-align:center;font-size:12px;color:#b5b0bf;padding:18px 0 90px}
+.sw{display:inline-block;width:12px;height:12px;vertical-align:-1px;margin-right:5px;border:2px solid var(--ink)}
+
+.selbar{flex-wrap:wrap;justify-content:center;max-width:calc(100vw - 24px);border-radius:22px;padding:8px 14px}
+.selbar .sg{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center}
+.selbar [hidden]{display:none!important}
+.selbar .chk{display:flex;align-items:center;gap:5px;cursor:pointer;color:var(--ink);font-size:13px}
+.pri{background:var(--blue)!important;border-color:var(--blue)!important;color:#fff!important;font-weight:600}
+.pri:hover{background:#232a52!important}
+.zoom{padding:6px 10px;gap:6px}
+.zoom input{width:110px}
+.zb{width:30px;height:30px;padding:0;border-radius:50%;font-size:18px;line-height:1}
+.modal{position:fixed;inset:0;z-index:20;background:rgba(38,35,43,.35);display:flex;align-items:center;justify-content:center;padding:16px}
+.modal[hidden]{display:none}
+.card{background:#fff;border-radius:14px;padding:20px 22px;width:min(440px,100%);max-height:calc(100vh - 32px);overflow:auto;box-shadow:0 16px 48px rgba(0,0,0,.25)}
+.card h2{margin:0 0 12px;font-size:18px;font-weight:600}
+.card label.f{display:block;font-size:13px;color:var(--mut);margin-bottom:12px}
+.card input[type=text]{display:block;width:100%;margin-top:4px;font:inherit;font-size:16px;padding:9px 10px;border:1px solid var(--line);border-radius:8px;color:var(--ink)}
+.card .hrow{display:flex;align-items:flex-end;gap:10px;margin-bottom:6px}
+.card .hrow label{font-size:13px;color:var(--mut)}
+.card .hrow input{display:block;margin-top:4px;width:80px;font-size:16px}
+#thint{font-size:12.5px;color:var(--mut);margin:0 0 4px}
+#thint.bad{color:#b3261e}
+.nt{font-size:12px;color:#a29cac;margin:0 0 10px}
+.pv{border:1px solid var(--line);border-radius:8px;min-height:60px;padding:10px;overflow:auto;background:#fafafc;display:flex;align-items:center}
+.pv canvas{display:block;margin:0 auto}
+.pv canvas,.fchip canvas{min-width:0;max-width:100%;height:auto!important;image-rendering:pixelated}
+#tinfo{font-size:12.5px;color:var(--mut);margin:8px 0 14px;min-height:18px}
+.card .acts{display:flex;justify-content:flex-end;gap:8px}
+.card .acts button{padding:8px 16px}
+.card button:disabled{opacity:.45;cursor:default}
+.card [hidden]{display:none!important}
+.fl{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+.fchip{flex:1 1 170px;display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;padding:9px 11px;border-radius:10px;background:#fff}
+.fchip.sel{border-color:var(--acc);box-shadow:0 0 0 2px rgba(63,74,138,.2);background:#f7f7fd}
+.fchip .fn{font-weight:600}
+.fchip .fc{font-size:11.5px;color:var(--mut);line-height:1.35}
+.hrow select{display:block;margin-top:4px;font:inherit;font-size:15px;padding:7px 8px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
+#twarn{font-size:12.5px;color:#9a5a00;margin:8px 0 0}
+.tabs{display:flex;align-items:flex-end;gap:4px;padding:6px 14px 0;background:#f7f6fa;border-bottom:1px solid var(--line);overflow-x:auto}
+.tab{display:flex;align-items:center;gap:2px;padding:5px 6px 5px 12px;border:1px solid var(--line);border-bottom:none;border-radius:8px 8px 0 0;background:#ecEAF2;color:var(--mut);font-size:13.5px;cursor:pointer;white-space:nowrap;margin-bottom:-1px;touch-action:manipulation;user-select:none}
+.tab.on{background:#fff;color:var(--ink);font-weight:600;box-shadow:inset 0 2px 0 var(--acc)}
+.tab button{padding:0;width:22px;height:22px;line-height:1;border:none;background:transparent;border-radius:50%;font-size:14px;color:var(--mut)}
+.tab button:hover{background:#e3e0ea;color:var(--ink)}
+.tin{font:inherit;font-size:16px;font-weight:600;width:11ch;padding:1px 4px;border:1px solid var(--acc);border-radius:5px;background:#fff;color:var(--ink)}
+.tab.on .tn{cursor:text}
+.tadd{padding:3px 10px;margin-bottom:3px;border-radius:6px;font-size:15px;line-height:1.2;color:var(--mut)}
+.draftnote{font-size:12.5px;color:var(--mut);line-height:1.4;margin:8px 0 12px}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1><svg width="30" height="30" viewBox="0 0 28 28" aria-hidden="true"><path d="M1.5 1.5h25v25h-25zM6.5 1.5v25M11.5 1.5v25M16.5 1.5v25M21.5 1.5v25M1.5 6.5h25M1.5 11.5h25M1.5 16.5h25M1.5 21.5h25" fill="none" stroke="#000" stroke-width="1" opacity=".35"/><g fill="#000"><rect x="11.5" y="1.5" width="5" height="5"/><rect x="6.5" y="6.5" width="5" height="5"/><rect x="11.5" y="6.5" width="5" height="5"/><rect x="16.5" y="6.5" width="5" height="5"/><rect x="1.5" y="11.5" width="5" height="5"/><rect x="6.5" y="11.5" width="5" height="5"/><rect x="16.5" y="11.5" width="5" height="5"/><rect x="21.5" y="11.5" width="5" height="5"/><rect x="6.5" y="16.5" width="5" height="5"/><rect x="11.5" y="16.5" width="5" height="5"/><rect x="16.5" y="16.5" width="5" height="5"/><rect x="11.5" y="21.5" width="5" height="5"/></g></svg><img class="wm" src="data:image/png;base64,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" alt="Crochet Studio" width="251" height="30"></h1>
+  <p>Simply click, drag, and grab your hook!</p>
+</div>
+<div class="hdr">
+<div class="bar">
+  <div class="grp" id="brushes"><span>Brush</span>
+    <button data-b="1" class="on"><i class="sw" style="background:var(--ink)"></i>Filled</button>
+    <button data-b="2"><i class="sw" style="background:#fff"></i>Mesh</button>
+    <button data-b="0">Erase</button>
+    <button data-b="3"><i class="sw" style="border-style:dashed;background:#fff"></i>Select</button>
+  </div>
+  <div class="grp"><span>Add</span>
+    <button class="ico" id="txt" title="Turn a word or name into a pattern"><svg viewBox="0 0 24 24"><path d="M5 7V5h14v2"/><path d="M12 5v14"/><path d="M9 19h6"/></svg>Enter Text</button>
+    <button class="ico" id="bdr" title="Frame your design with a border"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="1"/><rect x="8" y="8" width="8" height="8" rx="1"/></svg>Border</button>
+  </div>
+  <div class="grp"><span>New grid</span><input type="number" id="nw" min="1" max="200" value="30" aria-label="Width"> ×
+    <input type="number" id="nh" min="1" max="200" value="12" aria-label="Height"><button id="new">Create</button></div>
+    <div class="grp">
+    <button class="ico" id="undo" title="Undo" aria-label="Undo"><svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg></button>
+    <button class="ico" id="redo" title="Redo" aria-label="Redo"><svg viewBox="0 0 24 24"><path d="m15 14 5-5-5-5"/><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"/></svg></button>
+    <button class="ico" id="rot" title="Rotate the grid 90°"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>Rotate</button>
+  </div>
+  <div class="grp"><button id="clear">Clear all</button></div>
+  <div class="grp"><button id="png">Download image</button></div>
+    <div class="help" id="help"><button aria-label="Help">?</button>
+      <div class="tip">Set your grid size, then click or drag across the squares to fill them in. Drag over filled squares to clear them again. Try the mesh brush for a special stitch or a pop of color. Use the + and − around the grid to add or remove rows and columns, Rotate to start from any corner, Select to fill, erase, move, copy and paste blocks, Add &rarr; Enter Text to turn a word or name into a draft pattern, Add &rarr; Border to frame your design, and the tabs above the grid to keep several designs going at once. When you're happy, download the image to print it or check off rows as you hook!</div>
+    </div>
+</div>
+<div class="tabs" id="tabs" role="tablist" aria-label="Designs"></div>
+</div>
+<main>
+  <div class="stage">
+    <div class="ed t">Top row <button data-e="top" data-a="0" aria-label="Remove top row">−</button><button data-e="top" data-a="1" aria-label="Add row on top">+</button></div>
+    <div class="ed v l"><span>Left<br>column</span> <button data-e="left" data-a="1" aria-label="Add column on left">+</button><button data-e="left" data-a="0" aria-label="Remove left column">−</button></div>
+    <canvas id="cv"></canvas>
+    <div class="ed v r"><span>Right<br>column</span> <button data-e="right" data-a="1" aria-label="Add column on right">+</button><button data-e="right" data-a="0" aria-label="Remove right column">−</button></div>
+    <div class="ed b">Bottom row <button data-e="bottom" data-a="0" aria-label="Remove bottom row">−</button><button data-e="bottom" data-a="1" aria-label="Add row at bottom">+</button></div>
+  </div>
+  <div id="info"></div>
+</main>
+<footer>Created by ProCrochetnating
+  <div class="soc"><a href="https://www.instagram.com/procrochetnating" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram @procrochetnating"><svg viewBox="0 0 24 24" aria-label="Instagram"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6"/></svg></a>
+  <a href="https://www.threads.com/@procrochetnating" target="_blank" rel="noopener noreferrer" title="Threads" aria-label="Threads @procrochetnating"><svg viewBox="0 0 24 24" aria-label="Threads"><path d="M17.2 8.6C16.6 6.4 14.9 5 12 5c-3.4 0-5.6 2.4-5.6 7s2.2 7 5.6 7c2.7 0 4.6-1.4 4.6-3.6 0-2.3-2-3.3-4.4-3.3-1.6 0-2.7.7-2.7 1.9 0 1.1 1 1.8 2.3 1.8 2 0 3.3-1.3 3.3-4.5"/></svg></a></div></footer>
+<div class="selbar" id="selbar" hidden>
+  <span id="selmsg"></span>
+  <span class="sg" id="g-sel"><button data-s="1">Fill</button><button data-s="2">Mesh</button><button data-s="0">Erase</button><button id="rotsel">Rotate</button><button id="copy">Copy</button></span>
+  <button id="paste" hidden>Paste</button>
+  <button id="desel" hidden>Deselect</button>
+  <span class="sg" id="g-flt" hidden><button id="rotflt">Rotate</button><label class="chk"><input type="checkbox" id="onlyempty"> Only into empty cells</label><button id="place" class="pri">Place</button><button id="cancelf">Cancel</button></span>
+</div>
+<div class="modal" id="txtm" hidden>
+  <div class="card" role="dialog" aria-label="Enter Text">
+    <h2>Enter Text</h2>
+    <label class="f">What would you like to write?<input type="text" id="ttxt" maxlength="40" placeholder="Start typing…" autocomplete="off" autocapitalize="off" spellcheck="false"></label>
+    <div class="fl" id="fontlist" role="radiogroup" aria-label="Font"></div>
+    <div class="hrow" id="gapopt"><label>Letter spacing<select id="tgap"><option value="1">Snug</option><option value="2">Roomy</option><option value="3">Airy</option></select></label></div>
+    <div id="autoopts" hidden>
+      <div class="hrow"><label>Height (rows)<input type="number" id="thh" min="1" max="40" value="7"></label><button id="trec" type="button">Use recommended</button></div>
+      <p id="thint"></p>
+      <p class="nt" id="tnote">Height means capital letters (English) or a whole syllable (한글). Tails on g, j, p, q, y reach below.</p>
+    </div>
+    <div class="pv"><canvas id="tpv"></canvas></div>
+    <p id="twarn" hidden></p>
+    <p id="tinfo"></p>
+    <p class="draftnote">This places a draft on your grid. You can move it, then fine-tune any stitch by hand.</p>
+    <div class="acts"><button id="tcancel" type="button">Cancel</button><button id="tadd" type="button" class="pri">Add to grid</button></div>
+  </div>
+</div>
+<div class="modal" id="bm" hidden>
+  <div class="card" role="dialog" aria-label="Add a border">
+    <h2>Add a border</h2>
+    <div class="fl" id="bdlist" role="radiogroup" aria-label="Border style"></div>
+    <div class="hrow">
+      <label>Where<select id="bmode"><option value="around">Around my design</option><option value="edge">At the edge of the grid</option></select></label>
+      <label>Space from design<input type="number" id="bgap" min="0" max="20" value="1"></label>
+      <label id="bthw">Thickness<input type="number" id="bth" min="1" max="5" value="1"></label>
+    </div>
+    <div class="hrow" id="bwhw" hidden>
+      <label>This design already has a border<select id="bwhat"><option value="replace">Replace the existing border</option><option value="outside">Add another one outside it</option></select></label>
+    </div>
+    <div class="pv"><canvas id="bpv"></canvas></div>
+    <p id="binfo"></p>
+    <p class="draftnote">If your design touches the edge, rows and columns are added automatically so the border fits around it.</p>
+    <div class="acts"><button id="bcancel" type="button">Cancel</button><button id="badd" type="button" class="pri">Add border</button></div>
+  </div>
+</div>
+<div class="modal" id="qm" hidden>
+  <div class="card" role="alertdialog" aria-labelledby="qmsg">
+    <p id="qmsg" style="margin:0 0 16px;font-size:15.5px;line-height:1.45"></p>
+    <div class="acts"><button id="qno" type="button">Cancel</button><button id="qyes" type="button" class="pri">OK</button></div>
+  </div>
+</div>
+<div class="zoom"><button class="zb" id="zout" aria-label="Zoom out">−</button><input type="range" id="zoom" min="14" max="52" value="28" aria-label="Zoom"><button class="zb" id="zin" aria-label="Zoom in">+</button></div>
+<script>
+const $=id=>document.getElementById(id);
+/* in-page replacements for confirm()/alert(), which some viewers and embedded previews silently block */
+let qAct=null;
+function ask(msg,yes,fn){$('qmsg').textContent=msg;$('qyes').textContent=yes||'OK';$('qno').hidden=!fn;qAct=fn||null;$('qm').hidden=false;$('qyes').focus()}
+function say(msg){ask(msg,'OK',null)}
+const qClose=ok=>{$('qm').hidden=true;const f=qAct;qAct=null;if(ok&&f)f()};
+$('qyes').onclick=()=>qClose(true);$('qno').onclick=()=>qClose(false);
+$('qm').addEventListener('click',e=>{if(e.target===$('qm'))qClose(false)});
+$('qm').addEventListener('keydown',e=>{if(e.key==='Escape')qClose(false)});
+const cv=$('cv'),KEY='filet-designer-v1',KEY2='filet-designer-v2';
+let g=[],W=30,H=12,cell=28,brush=1,undo=[],redo=[],rot=0,sel=null,sm=null,clip=null,flt=null,onlyEmpty=false,note='';
+const blank=(w,h)=>Array.from({length:h},()=>Array(w).fill(0));
+const has=()=>g.some(r=>r.some(v=>v));
+const dpr=()=>window.devicePixelRatio||1;
+/* zoom-out limit adapts to the grid: the whole grid fits on screen at the minimum */
+let zmin=14;
+function fitCell(){
+  const aw=document.documentElement.clientWidth-(window.innerWidth>760?200:24),ah=window.innerHeight-190;
+  for(let c=52;c>=3;c--)if(W*c+2*mxOf(c)<=aw&&H*c+2*myOf(c)<=ah)return c;
+  return 3}
+function updZoom(){zmin=Math.max(3,Math.min(14,fitCell()));const z=$('zoom');z.min=zmin;z.max=52;
+  cell=Math.max(zmin,Math.min(52,cell));z.value=cell}
+function placeTop(){const b=document.querySelector('.hdr');if(b)document.querySelector('.ed.t').style.top=(Math.max(0,b.getBoundingClientRect().bottom)+8)+'px'}
+addEventListener('scroll',placeTop,{passive:true});
+addEventListener('resize',()=>{updZoom();render(cv,cell,dpr());placeTop()});
+function sync(){bar();
+  H=g.length;W=g[0].length;updZoom();placeTop();$('info').textContent=`${W} × ${H} = ${W*H} stitches`;render(cv,cell,dpr());
+  saveTab();
+  try{localStorage.setItem(KEY2,JSON.stringify({cur:ti,tabs:tabs.map(t=>({name:t.name,g:t.g,rot:t.rot}))}));localStorage.setItem(KEY,JSON.stringify({g,rot}))}catch(e){}}
+/* tabs: several designs, each with its own grid, history and zoom */
+let tabs=[],ti=0;
+function saveTab(){const t=tabs[ti];if(t){t.g=g;t.rot=rot;t.undo=undo;t.redo=redo;t.cell=cell}}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function renderTabs(){
+  $('tabs').innerHTML=tabs.map((t,i)=>`<div class="tab${i===ti?' on':''}" role="tab" aria-selected="${i===ti}" data-i="${i}" ${i===ti?' title="Click the name to rename"':''}><span class="tn">${esc(t.name)}</span>${tabs.length>1?'<button data-x="'+i+'" aria-label="Close '+esc(t.name)+'" title="Remove">×</button>':''}</div>`).join('')+
+    (tabs.length<12?'<button class="tadd" id="tadd2" title="New tab with the New grid size" aria-label="New tab">+</button>':'');placeTop()}
+function loadTab(i){
+  if(flt)cancelFloat();saveTab();ti=i;const t=tabs[i];g=t.g;rot=t.rot;undo=t.undo;redo=t.redo;cell=t.cell;sel=null;sync();renderTabs()}
+function nextName(){let n=tabs.length+1;while(tabs.some(t=>t.name==='Grid '+n))n++;return 'Grid '+n}
+function addTab(){
+  if(tabs.length>=12)return;if(flt)cancelFloat();saveTab();
+  const w=Math.min(200,Math.max(1,+$('nw').value||30)),h=Math.min(200,Math.max(1,+$('nh').value||12));
+  tabs.push({name:nextName(),g:blank(w,h),rot:0,undo:[],redo:[],cell:28});loadTab(tabs.length-1)}
+function closeTab(i){
+  if(tabs.length<2)return;const t=tabs[i];
+  if(t.g.some(r=>r.some(v=>v)))return ask(`Remove "${t.name}"? Its pattern will be deleted.`,'Remove',()=>closeTab2(i));
+  closeTab2(i)}
+function closeTab2(i){
+  if(tabs.length<2||!tabs[i])return;
+  if(i===ti){tabs.splice(i,1);ti=Math.min(i,tabs.length-1);const n=tabs[ti];g=n.g;rot=n.rot;undo=n.undo;redo=n.redo;cell=n.cell;sel=null;flt=null;sync();renderTabs()}
+  else{tabs.splice(i,1);if(i<ti)ti--;sync();renderTabs()}}
+function renameTab(i){
+  const tn=$('tabs').querySelector('.tab.on .tn');if(!tn||i!==ti)return;
+  const inp=document.createElement('input');inp.className='tin';inp.value=tabs[i].name;inp.maxLength=24;inp.setAttribute('aria-label','Design name');
+  let done=false;const fin=ok=>{if(done)return;done=true;if(ok)tabs[i].name=inp.value.trim().slice(0,24)||tabs[i].name;sync();renderTabs()};
+  inp.addEventListener('keydown',e=>{e.stopPropagation();if(e.key==='Enter'){e.preventDefault();fin(true)}else if(e.key==='Escape'){e.preventDefault();fin(false)}});
+  inp.addEventListener('blur',()=>fin(true));
+  tn.replaceWith(inp);inp.focus();inp.select()}
+$('tabs').addEventListener('click',e=>{
+  const x=e.target.closest&&e.target.closest('[data-x]'),t=e.target.closest&&e.target.closest('.tab'),a=e.target.closest&&e.target.closest('.tadd');
+  if(a)return addTab();if(x)return closeTab(+x.dataset.x);
+  if(!t)return;const i=+t.dataset.i;
+  if(i!==ti)loadTab(i);else if(e.target.closest('.tn'))renameTab(i)});
+const snap=()=>JSON.stringify({g,rot});
+function push(){undo.push(snap());if(undo.length>100)undo.shift();redo=[]}
+function restore(s){const o=JSON.parse(s);g=o.g;rot=o.rot;sel=null;sync()}
+
+function labels(W,H,rot){
+  const ow=rot%2?H:W,oh=rot%2?W:H,f=(n,fn)=>Array.from({length:n},(_,i)=>fn(i));
+  let L={t:f(ow,k=>ow-k),b:f(ow,k=>k+1),l:f(oh,r=>oh-r),r:f(oh,r=>r+1)};
+  for(let i=0;i<rot;i++)L={t:[...L.l].reverse(),r:L.t,b:[...L.r].reverse(),l:L.b};
+  return L}
+const mxOf=cs=>Math.max(cs*1.3,22),myOf=cs=>Math.max(cs,15);
+function render(c,cs,ratio,sig){
+  const mx=mxOf(cs),my=myOf(cs),w=W*cs+2*mx,gh=H*cs+2*my,ex=sig?cs*1.3:0,h=gh+ex,x=c.getContext('2d');
+  c.width=w*ratio;c.height=h*ratio;c.style.width=w+'px';c.style.height=h+'px';
+  x.setTransform(ratio,0,0,ratio,0,0);x.fillStyle='#fff';x.fillRect(0,0,w,h);
+  x.strokeStyle='#e3e0ea';x.lineWidth=1;x.beginPath();
+  for(let i=0;i<=W;i++){x.moveTo(mx+i*cs+.5,my);x.lineTo(mx+i*cs+.5,my+H*cs)}
+  for(let j=0;j<=H;j++){x.moveTo(mx,my+j*cs+.5);x.lineTo(mx+W*cs,my+j*cs+.5)}
+  x.stroke();
+  x.strokeStyle=x.fillStyle='#26232b';x.lineWidth=Math.max(1.5,cs*.09);
+  for(let r=0;r<H;r++)for(let k=0;k<W;k++){
+    const v=g[r][k],px=mx+k*cs,py=my+r*cs;
+    if(v===1)x.fillRect(px,py,cs,cs);
+    else if(v===2)x.strokeRect(px+cs*.2,py+cs*.2,cs*.6,cs*.6);
+  }
+  if(sel&&!sig){const sx=mx+sel.x0*cs,sy=my+sel.y0*cs,sw=(sel.x1-sel.x0+1)*cs,sh=(sel.y1-sel.y0+1)*cs;
+    x.fillStyle='rgba(45,53,99,.14)';x.fillRect(sx,sy,sw,sh);x.strokeStyle='#2d3563';x.lineWidth=2;x.setLineDash([6,4]);x.strokeRect(sx+1,sy+1,sw-2,sh-2);x.setLineDash([])}
+  if(flt&&!sig){const bw=flt.buf[0].length,bh=flt.buf.length,fx=mx+flt.x*cs,fy=my+flt.y*cs;
+    x.fillStyle='rgba(91,111,224,.12)';x.fillRect(fx,fy,bw*cs,bh*cs);
+    x.fillStyle=x.strokeStyle='#4f63d9';x.lineWidth=Math.max(1.5,cs*.09);
+    flt.buf.forEach((row,j)=>row.forEach((v,i)=>{if(!v)return;const gy=flt.y+j,gx=flt.x+i;if(onlyEmpty&&g[gy][gx])return;
+      const px=mx+gx*cs,py=my+gy*cs;if(v===1)x.fillRect(px,py,cs,cs);else x.strokeRect(px+cs*.2,py+cs*.2,cs*.6,cs*.6)}));
+    x.strokeStyle='#4f63d9';x.lineWidth=2;x.setLineDash([6,4]);x.strokeRect(fx+1,fy+1,bw*cs-2,bh*cs-2);x.setLineDash([])}
+  x.fillStyle='#a29cac';x.font=`${Math.max(9,cs*.38)}px "Avenir Next",system-ui,sans-serif`;
+  x.textAlign='center';x.textBaseline='middle';
+  const L=labels(W,H,rot),stp=cs>=13?1:cs>=7?5:10,sh=n=>n%stp===0;
+  for(let k=0;k<W;k++){const px=mx+k*cs+cs/2;if(sh(L.t[k]))x.fillText(L.t[k],px,my/2);if(sh(L.b[k]))x.fillText(L.b[k],px,gh-my/2)}
+  for(let r=0;r<H;r++){const py=my+r*cs+cs/2;if(sh(L.l[r]))x.fillText(L.l[r],mx/2,py);if(sh(L.r[r]))x.fillText(L.r[r],w-mx/2,py)}
+  if(sig){x.font=`${Math.max(11,cs*.36)}px "Avenir Next",system-ui,sans-serif`;x.fillStyle='#b5b0bf';x.fillText('Created by ProCrochetnating',w/2,gh+ex/2-cs*.1)}
+}
+
+/* selection */
+const inSel=p=>sel&&p[0]>=sel.x0&&p[0]<=sel.x1&&p[1]>=sel.y0&&p[1]<=sel.y1;
+const cut=()=>{const b=[];for(let y=sel.y0;y<=sel.y1;y++)b.push(g[y].slice(sel.x0,sel.x1+1));return b};
+function place(orig,b,buf,dx,dy){
+  g=orig.map(r=>r.slice());
+  for(let y=b.y0;y<=b.y1;y++)for(let x=b.x0;x<=b.x1;x++)g[y][x]=0;
+  buf.forEach((row,j)=>row.forEach((v,i)=>{g[b.y0+dy+j][b.x0+dx+i]=v}));
+  sel={x0:b.x0+dx,y0:b.y0+dy,x1:b.x1+dx,y1:b.y1+dy}}
+function nudge(dx,dy){dx=Math.max(-sel.x0,Math.min(W-1-sel.x1,dx));dy=Math.max(-sel.y0,Math.min(H-1-sel.y1,dy));
+  if(!dx&&!dy)return;push();place(g,{...sel},cut(),dx,dy);sync()}
+function fillSel(v){push();for(let y=sel.y0;y<=sel.y1;y++)for(let x=sel.x0;x<=sel.x1;x++)g[y][x]=v;sync()}
+
+/* drawing */
+let drawing=false,last=null,mode=1,changed=false;
+function at(e){const r=cv.getBoundingClientRect();return[Math.floor((e.clientX-r.left-mxOf(cell))/cell),Math.floor((e.clientY-r.top-myOf(cell))/cell)]}
+function paint(k,r){if(k<0||r<0||k>=W||r>=H||g[r][k]===mode)return;g[r][k]=mode;changed=true}
+function line([x0,y0],[x1,y1]){const dx=Math.abs(x1-x0),dy=-Math.abs(y1-y0),sx=x0<x1?1:-1,sy=y0<y1?1:-1;let e=dx+dy;
+  for(;;){paint(x0,y0);if(x0===x1&&y0===y1)break;const e2=2*e;if(e2>=dy){e+=dy;x0+=sx}if(e2<=dx){e+=dx;y0+=sy}}}
+cv.addEventListener('pointerdown',e=>{
+  const p=at(e);if(p[0]<0||p[1]<0||p[0]>=W||p[1]>=H)return;
+  if(flt){e.preventDefault();cv.setPointerCapture(e.pointerId);sm={m:'fdrag',p,base:[flt.x,flt.y]};return}
+  if(brush===3){e.preventDefault();cv.setPointerCapture(e.pointerId);
+    if(inSel(p)){push();sm={m:'move',p,base:{...sel},buf:cut(),orig:g.map(r=>r.slice()),dx:0,dy:0}}
+    else{sm={m:'draw',a:p};sel={x0:p[0],y0:p[1],x1:p[0],y1:p[1]}}
+    render(cv,cell,dpr());return}
+  e.preventDefault();cv.setPointerCapture(e.pointerId);push();changed=false;
+  mode=(brush!==0&&g[p[1]][p[0]]===brush)?0:brush;drawing=true;last=p;line(p,p);render(cv,cell,dpr())});
+cv.addEventListener('pointermove',e=>{
+  if(sm){const p=at(e),cl=(v,a,b)=>Math.max(a,Math.min(b,v));
+    if(sm.m==='fdrag'){const bw=flt.buf[0].length,bh=flt.buf.length;flt.x=cl(sm.base[0]+p[0]-sm.p[0],0,W-bw);flt.y=cl(sm.base[1]+p[1]-sm.p[1],0,H-bh)}
+    else if(sm.m==='draw'){const cx=cl(p[0],0,W-1),cy=cl(p[1],0,H-1);
+      sel={x0:Math.min(sm.a[0],cx),y0:Math.min(sm.a[1],cy),x1:Math.max(sm.a[0],cx),y1:Math.max(sm.a[1],cy)}}
+    else{const b=sm.base;sm.dx=cl(p[0]-sm.p[0],-b.x0,W-1-b.x1);sm.dy=cl(p[1]-sm.p[1],-b.y0,H-1-b.y1);place(sm.orig,b,sm.buf,sm.dx,sm.dy)}
+    render(cv,cell,dpr());return}
+  if(!drawing)return;const p=at(e);line(last,p);last=p;render(cv,cell,dpr())});
+const end=()=>{if(sm){const t=sm;sm=null;if(t.m==='move'&&!t.dx&&!t.dy)undo.pop();sync();return}
+  if(!drawing)return;drawing=false;if(!changed)undo.pop();sync()};
+cv.addEventListener('pointerup',end);cv.addEventListener('pointercancel',end);
+
+/* controls */
+document.querySelectorAll('[data-b]').forEach(b=>b.onclick=()=>{brush=+b.dataset.b;if(brush!==3)sel=null;note='';cv.style.cursor=brush===3?'default':'crosshair';sync();
+  document.querySelectorAll('[data-b]').forEach(o=>o.classList.toggle('on',o===b))});
+document.querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>edge(b.dataset.e,b.dataset.a==='1'));
+function edge(s,add){
+  nf();
+  if(!add){
+    if((s==='top'||s==='bottom')?H<=1:W<=1)return say('The grid needs at least one row and one column.');
+    const f={top:()=>g[0],bottom:()=>g[H-1],left:()=>g.map(r=>r[0]),right:()=>g.map(r=>r[W-1])}[s]();
+    const name={top:'top row',bottom:'bottom row',left:'left column',right:'right column'}[s];
+    if(f.some(v=>v))return ask(`The ${name} has stitches in it. Delete it anyway?`,'Delete',()=>edge2(s,add));
+  }
+  edge2(s,add)}
+function edge2(s,add){
+  push();sel=null;
+  if(s==='top')add?g.unshift(Array(W).fill(0)):g.shift();
+  else if(s==='bottom')add?g.push(Array(W).fill(0)):g.pop();
+  else if(s==='left')g.forEach(r=>add?r.unshift(0):r.shift());
+  else g.forEach(r=>add?r.push(0):r.pop());
+  sync();
+}
+$('undo').onclick=()=>{if(flt)return cancelFloat();if(undo.length){redo.push(snap());restore(undo.pop())}};
+$('redo').onclick=()=>{if(flt)return cancelFloat();if(redo.length){undo.push(snap());restore(redo.pop())}};
+addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='z'){e.preventDefault();$(e.shiftKey?'redo':'undo').click()}});
+const setZoom=v=>{cell=Math.max(zmin,Math.min(52,Math.round(v)));$('zoom').value=cell;sync()};
+$('zoom').oninput=e=>setZoom(+e.target.value);
+const zstep=()=>cell>=20?4:cell>=10?2:1;
+$('zout').onclick=()=>setZoom(cell-zstep());
+$('zin').onclick=()=>setZoom(cell+zstep());
+$('new').onclick=()=>{nf();const w=Math.min(200,Math.max(1,+$('nw').value||30)),h=Math.min(200,Math.max(1,+$('nh').value||12));
+  const go=()=>{push();g=blank(w,h);rot=0;sel=null;sync()};
+  if(has())ask('Start a new grid? Your current pattern will be replaced (you can undo).','Start new',go);else go()};
+$('clear').onclick=()=>{nf();if(!has())return;ask('Clear every stitch on the grid? You can undo this.','Clear all',()=>{push();g=blank(W,H);sync()})};
+$('rot').onclick=()=>{nf();push();sel=null;g=Array.from({length:W},(_,r)=>Array.from({length:H},(_,c)=>g[H-1-c][r]));rot=(rot+1)%4;sync()};
+document.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>fillSel(+b.dataset.s));
+$('desel').onclick=()=>{sel=null;sync()};
+$('help').onclick=e=>{e.stopPropagation();$('help').classList.toggle('show')};
+document.addEventListener('click',()=>$('help').classList.remove('show'));
+
+/* copy / paste / floating block */
+const cl=(v,a,b)=>Math.max(a,Math.min(b,v));
+const nf=()=>{if(flt)cancelFloat()};
+function bar(){
+  const show=brush===3||!!flt;$('selbar').hidden=!show;if(!show)return;
+  $('g-sel').hidden=!!flt||!sel;$('desel').hidden=!!flt||!sel;$('paste').hidden=!clip||!!flt;$('g-flt').hidden=!flt;
+  $('selmsg').textContent=note||(flt?'Drag to position it':sel?`Selection ${sel.x1-sel.x0+1}×${sel.y1-sel.y0+1}`:'Drag over the grid to select')}
+function copySel(){if(!sel)return;clip=cut();note=`Copied ${sel.x1-sel.x0+1}×${sel.y1-sel.y0+1}`;bar();setTimeout(()=>{note='';bar()},1400)}
+function startFloat(buf,x,y,pushed){flt={buf,x:cl(x,0,W-buf[0].length),y:cl(y,0,H-buf.length),pushed:!!pushed};sel=null;sync()}
+function pasteClip(){
+  if(!clip)return;nf();const bw=clip[0].length,bh=clip.length;
+  if(bw>W||bh>H)return say('The copied block is bigger than the grid. Add rows or columns first.');
+  startFloat(clip.map(r=>r.slice()),sel?sel.x0+2:Math.floor((W-bw)/2),sel?sel.y0+2:Math.floor((H-bh)/2))}
+function moveFloat(dx,dy){flt.x=cl(flt.x+dx,0,W-flt.buf[0].length);flt.y=cl(flt.y+dy,0,H-flt.buf.length);sync()}
+function placeFloat(){
+  if(!flt)return;const f=flt;if(!f.pushed)push();
+  f.buf.forEach((row,j)=>row.forEach((v,i)=>{if(!v)return;const y=f.y+j,x=f.x+i;if(onlyEmpty&&g[y][x])return;g[y][x]=v}));
+  sel=brush===3?{x0:f.x,y0:f.y,x1:f.x+f.buf[0].length-1,y1:f.y+f.buf.length-1}:null;flt=null;sync()}
+function cancelFloat(){
+  if(!flt)return;if(flt.pushed&&undo.length){const o=JSON.parse(undo.pop());g=o.g;rot=o.rot}
+  flt=null;sync()}
+const rotBuf=b=>Array.from({length:b[0].length},(_,r)=>Array.from({length:b.length},(_,c)=>b[b.length-1-c][r]));
+function rotSel(){
+  if(!sel)return;const w=sel.x1-sel.x0+1,h=sel.y1-sel.y0+1;
+  if(h>W||w>H)return say('Rotated, the block would be bigger than the grid. Add rows or columns first.');
+  const blk=[];for(let y=sel.y0;y<=sel.y1;y++)blk.push(g[y].slice(sel.x0,sel.x1+1));
+  const rb=rotBuf(blk),nx=cl(Math.round(sel.x0+(w-h)/2),0,W-h),ny=cl(Math.round(sel.y0+(h-w)/2),0,H-w);
+  push();for(let y=sel.y0;y<=sel.y1;y++)for(let x=sel.x0;x<=sel.x1;x++)g[y][x]=0;
+  rb.forEach((row,j)=>row.forEach((v,i)=>{if(v)g[ny+j][nx+i]=v}));
+  sel={x0:nx,y0:ny,x1:nx+h-1,y1:ny+w-1};sync()}
+function rotFloat(){
+  if(!flt)return;const b=flt.buf,w=b[0].length,h=b.length;if(h>W||w>H)return say('Rotated, the block would be bigger than the grid.');
+  flt.x=cl(Math.round(flt.x+(w-h)/2),0,W-h);flt.y=cl(Math.round(flt.y+(h-w)/2),0,H-w);flt.buf=rotBuf(b);sync()}
+$('rotsel').onclick=rotSel;$('rotflt').onclick=rotFloat;
+$('copy').onclick=copySel;$('paste').onclick=pasteClip;$('place').onclick=placeFloat;$('cancelf').onclick=cancelFloat;
+$('onlyempty').onchange=e=>{onlyEmpty=e.target.checked;sync()};
+addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT'||sm||!$('txtm').hidden)return;
+  const k=e.key.toLowerCase();
+  if(e.metaKey||e.ctrlKey){
+    if(k==='c'&&sel&&!flt){e.preventDefault();copySel()}
+    else if(k==='v'&&clip){e.preventDefault();pasteClip()}
+    return}
+  const d={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[e.key];
+  if(flt){
+    if(d){e.preventDefault();moveFloat(...d)}
+    else if(e.key==='Enter'){e.preventDefault();placeFloat()}
+    else if(e.key==='Escape')cancelFloat();
+    return}
+  if(!sel)return;
+  if(d){e.preventDefault();nudge(...d)}
+  else if(e.key==='Delete'||e.key==='Backspace'){e.preventDefault();fillSel(0)}
+  else if(e.key==='Escape'){sel=null;sync()}});
+
+
+/*BF-START*/
+/* Bold Italic: hand-fit pixel letters (A-Z, a-z) read cell-by-cell from the reference chart.
+   char:[baseline row index, 'row/row/...'] where '#' is a stitch and the baseline row is the bottom of the letter body. */
+const BF_BOLDITALIC={
+A:[9,'........##../.......###../......####../.....#####../....##.###../...##..###../...#######../..##...###../.##....###../####.#######'],
+B:[9,'..#########./....###.####/...####..###/...####.###./...#######../...###..####/..####..####/..####..####/..####.####./#########...'],
+C:[9,'.....#####/...####.##/..###...#./.####...../####....../####....../####....../####...##./.###..##../..#####...'],
+D:[9,'...#######.../....####.###./....###..####/...####..####/...####..####/...###...####/...###..####./..####..###../..####.###.../########.....'],
+E:[9,'..#########/...####..##/...####...#/...###..#../...######../..####.#.../..####...../..###....#./.####...##./##########.'],
+F:[9,'..#########/...####..##/...####...#/...###..#../...######../..####.#.../..####...../..###....../..###....../#######....'],
+G:[9,'.....######/...####..##/..####...#./.####....../####......./####.######/####...###./####..###../.###..###../..######...'],
+H:[9,'..#######.######/....####...####./...####....###../...####...####../...###########../...####...####../..####...####.../..####...####.../..####...####.../#######.######..'],
+I:[9,'..######/...####./...####./...###../..####../..####../..###.../..###.../.####.../######..'],
+J:[9,'......######/.......####./.......###../......####../......####../......###.../.....####.../.....####.../.....###..../.....###..../.##.###...../###.##....../.####.......'],
+K:[9,'..######.####/...####..###./...###..###../..####.###.../..#######..../..########.../..###.####.../.####..###.../.####..####../######..####.'],
+L:[9,'.######./..####../..####../..###.../..###.../.####.../.####.../.###...#/.###..##/########'],
+M:[9,'...#####...#####/....####..#####./....####.#####../...###########../...#.####.####../..##.###..###.../..#..###..###.../..#..###.####.../.##..##..####.../####.#..######..'],
+N:[9,'..#####..####/...####...##./...#####..##./...#.###..#../...#.####.#../..##.######../..##..#####../.##....###.../.##....###.../####....###..'],
+O:[9,'....####.../..###..###./.####..###./####...####/####...####/####...###./###...####./###...###../.###.###.../..#####....'],
+P:[9,'...########./....####.###/....###..###/...####..###/...####.####/...#######../...###....../..####....../..####....../#######.....'],
+Q:[9,'....####.../..###..###./.####..###./####...####/####...####/####...###./###...####./###.#.###../.###.###.../..######.##/......####.'],
+R:[9,'.##########../...####..####/...####..####/...####..###./...###..###../...#######.../..####.####../..####.####../..####..###../#######.#####'],
+S:[9,'...######/..###..##/.####...#/.#####.../..######./...######/##..#####/##...####/###.####./.######..'],
+T:[9,'.##########/.##.####.##/##..###...#/...####..../...####..../...###...../..####...../..####...../..####...../.######....'],
+U:[9,'.######.###/..####...##/..###....#./..###...##./.####...##./.###....##./.###...##../####...##../.###..##.../..#####....'],
+V:[9,'######.###/.###...##./.###...#../.###..##../.###..#.../.###.#..../.####...../.####...../.###....../.##.......'],
+W:[9,'#####.#####.####/.####..###...##./.####..###...#../.####..###..#.../.####.####.##.../.#########.#..../.#####.####...../.####..####...../.###...###....../.###...##.......'],
+X:[9,'..######.###/...####..##./....###..#../....#####.../.....###..../....####..../...##.###.../..##..###.../.##...####../####.######.'],
+Y:[9,'######.####/.####...##./..###...#../..###..#.../...####..../...####..../...###...../..####...../..####...../.######....'],
+Z:[9,'...########/..##..#####/..#..#####./.....####../....####.../...####..../..#####..#./..####...#./.####...##./##########.'],
+a:[6,'...#####./..##.###./.##..##../###.###../#######.#/###.####./.#..##...'],
+b:[9,'..###..../#####..../.###...../.###.###./.########/.####.###/####..##./###..###./###.###../.#####...'],
+c:[6,'..#####/.###.##/####.../###..../###..#./######./.####..'],
+d:[9,'......####/.......###/.......###/...#######/..###.###./.###..###./####.###../########.#/####.####./.##..###..'],
+e:[6,'...####./..##.###/.###.###/######../####...#/#####.#./.#####..'],
+f:[9,'.......#####/......###.##/.....###..../...#######../....###...../....###...../....###...../....###...../...###....../...###....../...###....../##.##......./####........'],
+g:[6,'...#####.#/..###.###./.###..###./..##.###../...####.../..###...../...####.../.##.####../##....##../.######...'],
+h:[9,'...###..../.####...../..###...../..###.##../.########./.####.###./.###..##../####.###.#/###..####./###..###..'],
+i:[9,'...##./...##./....../..###./#####./#.###./.###../.###.#/.####./.###..'],
+j:[9,'......##/......##/......../.....###/...#####/...#.###/..#.###./....###./....###./...####./...###../##.###../####....'],
+k:[9,'.#####..../..####..../..####..../..###.###./..########/..###..##./.######.../.###.###.#/.###.###.#/####..###.'],
+l:[9,'..###/#####/..###/.####/.###./.###./###../###.#/####./###..'],
+m:[6,'..###..##..###./.####.###.####./#.####.###.###./..###.###..##../..###.###.###.#/.###..###.####./.###.###..###..'],
+n:[6,'..###.###../.#########./#.#######../..###.###../..##..###.#/.###.#####./.###.####..'],
+o:[6,'...####../.####.##./####..###/####..###/###..###./.##.####./..#####..'],
+p:[6,'..######./...###.##/..###..##/..##..###/..##.####/.#######./.#####.../.##....../.##....../####...../###......'],
+q:[6,'...######/..###.###/.###..###/###..###./###.####./########./.##.###../....###../....###../...####.#/....####./.....##..'],
+r:[6,'..##..##/####.###/#.###.##/.####.../.###..../.###..../###.....'],
+s:[6,'..#####/.###..#/.####../..####./#..####/##..###/######.'],
+t:[8,'..###../..###../#######/.###.../.###.../.###.../####.#./#####../.###...'],
+u:[6,'..###..###./#####.####./#.###.###../.###..###../.###.####.#/.####.####./.###..##...'],
+v:[6,'..###.##./.####.###/#.###.##./.####.##./.###.##../.#####.../.###.....'],
+w:[6,'..###..###.##/#####.###..##/#.###.###..#./.###..###.##./.###.####.#../.####.####.../.###..##.....'],
+x:[6,'...###.###/..########/.#.####.../....###.../...####.#./####.###../###..##...'],
+y:[6,'..###..##/..####.##/.#.###..#/...###.##/...#####./...####../...###.../####...../###......'],
+z:[6,'..######/.######./.#..##../...##.../..####.#/.#######/###.###.'],
+"0":[9,'....######/..###..###/..###..###/..###..###/..###..###/.###..###./.###..###./.###..###./###..###../.######...'],
+"1":[9,'.....###/...####./..#####./....###./....###./...###../...###../...###../..###.../########'],
+"2":[9,'....######/..###..###/.......###/......###./.....###../...###..../..###...../.###....../###......./########..'],
+"3":[9,'....######/..###..###/.......###/....#####./.......###/......###./......###./.###..###./###..###../.######...'],
+"4":[9,'......###/....####./...##.###/..###.###/.###..###/########./########./.....###./....###../....###..'],
+"5":[9,'...########/..###....../..###....../..#######../..###..###./......###../......###../.###..###../###..###.../.######....'],
+"6":[9,'....######/..###..###/..###...../..#######./..###..###/.###..###./.###..###./.###..###./###..###../.######...'],
+"7":[9,'.########/.....###./.....###./....###../....###../..###..../..###..../.###...../###....../###......'],
+"8":[9,'....######/..###..###/..###..###/...######./..###..###/.###..###./.###..###./.###..###./###..###../.######...'],
+"9":[9,'....######/..###..###/..###..###/..###..###/...#######/......###./......###./.###..###./###..###../.######...'],
+"!":[9,'...###/..###./..###./..###./..###./.###../.###../....../###.../###...'],
+"+":[8,'...###../...###../...###../.#######/#######./..###.../..###.../.###..../........'],
+"(":[9,'.....##/...###./..###../..###../.###.../###..../###..../###..../###..../###..../.###.../.##....'],
+")":[9,'....##../...###../....###./....###./.....###/....###./....###./....###./..###.../..###.../.###..../##......'],
+"<":[8,'....###/...###./..###../.###.../###..../.###.../..###../..###../.......'],
+">":[8,'..###.../...###../....###./.....###/....###./...###../..###.../###...../........'],
+"#":[8,'..##..##./..##..##./.########/..##..##./.##..##../########./.##..##../##..##.../.........'],
+"&":[9,'....####.../..###.###../..###.###../...####..../..#####..##/###.###.##./###..###.../###..####../###.#####../.####..##..'],
+"%":[9,'...####....##/..#..#...##../..#..#..##.../..####.##..../......##...../.....##....../....##.####../...##..#..#../.##...#..#.../##....####...']
+};
+/*BF-END*/
+/*DOT-START*/
+/* Matrix: hand-fit pixel letters, numbers and symbols read from a reference chart. Same format as above; letters are 7 rows tall, small letters 5. */
+const BF_DOT={
+"A":[6,'.###./#...#/#...#/#...#/#####/#...#/#...#'],
+"B":[6,'####./#...#/#...#/####./#...#/#...#/####.'],
+"C":[6,'.###./#...#/#..../#..../#..../#...#/.###.'],
+"D":[6,'####./#...#/#...#/#...#/#...#/#...#/####.'],
+"E":[6,'#####/#..../#..../####./#..../#..../#####'],
+"F":[6,'#####/#..../#..../####./#..../#..../#....'],
+"G":[6,'.###./#...#/#..../#..../#..##/#...#/.###.'],
+"H":[6,'#...#/#...#/#...#/#####/#...#/#...#/#...#'],
+"I":[6,'#####/..#../..#../..#../..#../..#../#####'],
+"J":[6,'....#/....#/....#/....#/#...#/#...#/.###.'],
+"K":[6,'#...#/#..#./#.#../##.../#.#../#..#./#...#'],
+"L":[6,'#..../#..../#..../#..../#..../#..../#####'],
+"M":[6,'#...#/##.##/#.#.#/#...#/#...#/#...#/#...#'],
+"N":[6,'#...#/#...#/##..#/#.#.#/#..##/#...#/#...#'],
+"O":[6,'.###./#...#/#...#/#...#/#...#/#...#/.###.'],
+"P":[6,'####./#...#/#...#/#...#/####./#..../#....'],
+"Q":[6,'.###./#...#/#...#/#...#/#.#.#/#..##/.####'],
+"R":[6,'####./#...#/#...#/#...#/####./#...#/#...#'],
+"S":[6,'.###./#...#/#..../.###./....#/#...#/.###.'],
+"T":[6,'#####/..#../..#../..#../..#../..#../..#..'],
+"U":[6,'#...#/#...#/#...#/#...#/#...#/#...#/.###.'],
+"V":[6,'#...#/#...#/#...#/#...#/#...#/.#.#./..#..'],
+"W":[6,'#...#/#...#/#...#/#...#/#.#.#/##.##/#...#'],
+"X":[6,'#...#/#...#/.#.#./..#../.#.#./#...#/#...#'],
+"Y":[6,'#...#/#...#/#...#/.#.#./..#../..#../..#..'],
+"Z":[6,'#####/....#/...#./..#../.#.../#..../#####'],
+"a":[4,'####/...#/####/#..#/####'],
+"b":[5,'#.../#.../####/#..#/#..#/####'],
+"c":[3,'####/#.../#.../####'],
+"d":[5,'...#/...#/####/#..#/#..#/####'],
+"e":[4,'####/#..#/####/#.../####'],
+"f":[5,'.###/.#../####/.#../.#../.#..'],
+"g":[4,'####/#..#/####/...#/####'],
+"h":[5,'#.../#.../####/#..#/#..#/#..#'],
+"i":[5,'#/./#/#/#/#'],
+"j":[5,'..#/.../..#/#.#/#.#/###'],
+"k":[5,'#.../#..#/#..#/###./#..#/#..#'],
+"l":[5,'#/#/#/#/#/#'],
+"m":[3,'####./#.#.#/#.#.#/#.#.#'],
+"n":[3,'###./#..#/#..#/#..#'],
+"o":[4,'####/#..#/#..#/#..#/####'],
+"p":[4,'####/#..#/#..#/####/#.../#...'],
+"q":[4,'####/#..#/#..#/####/...#/...#'],
+"r":[4,'###./#..#/#.../#.../#...'],
+"s":[4,'####/#.../####/...#/####'],
+"t":[5,'.#../####/.#../.#../.#../.###'],
+"u":[4,'#..#/#..#/#..#/#..#/####'],
+"v":[4,'#...#/#...#/##.##/.###./..#..'],
+"w":[4,'#...#/#...#/#.#.#/#####/.#.#.'],
+"x":[4,'#..#/#..#/.##./#..#/#..#'],
+"y":[4,'#..#/#..#/####/...#/...#/####'],
+"z":[4,'###/..#/.#./#../###'],
+"_":[0,'###'],
+".":[0,'#'],
+"+":[4,'.#./###/.#.'],
+"-":[3,'###'],
+"×":[4,'#.#/.#./#.#'],
+"/":[4,'..#/.#./#..'],
+",":[1,'.#/#.'],
+"=":[4,'###/.../###'],
+"1":[6,'..#/.##/#.#/..#/..#/..#/..#'],
+"2":[6,'.###./#...#/....#/...#./..#../.#.../#####'],
+"3":[6,'.###./#...#/....#/..##./....#/#...#/.###.'],
+"4":[6,'...##/..#.#/.#..#/#...#/#####/....#/....#'],
+"5":[6,'#####/#..../#..../####./....#/....#/####.'],
+"6":[6,'.###./#...#/#..../####./#...#/#...#/.###.'],
+"7":[6,'#####/....#/....#/...#./..#../..#../..#..'],
+"8":[6,'.###./#...#/#...#/.###./#...#/#...#/.###.'],
+"9":[6,'.###./#...#/#...#/.####/....#/#...#/.###.'],
+"0":[6,'.###./#...#/#..##/#.#.#/##..#/#...#/.###.'],
+"?":[6,'.###./#...#/....#/...#./..#../...../..#..'],
+"!":[6,'#/#/#/#/#/./#'],
+":":[4,'#/./#'],
+">":[5,'#../.#./..#/.#./#..'],
+"<":[5,'..#/.#./#../.#./..#'],
+"@":[6,'.###./#...#/#.###/#.#.#/#.###/#..../.####'],
+"(":[6,'.#/#./#./#./#./#./.#'],
+")":[6,'#./.#/.#/.#/.#/.#/#.'],
+"{":[6,'..##/.#../.#../#.../.#../.#../..##'],
+"}":[6,'##../..#./..#./...#/..#./..#./##..'],
+";":[4,'.#/../.#/#.'],
+"…":[0,'#.#.#'],
+"\"":[6,'#.#/#.#'],
+"→":[5,'..#../...#./#####/...#./..#..'],
+"←":[5,'..#../.#.../#####/.#.../..#..'],
+"↑":[6,'..#../.###./#.#.#/..#../..#../..#..'],
+"↓":[5,'..#../..#../..#../#.#.#/.###./..#..'],
+"#":[5,'.#.#./#####/.#.#./#####/.#.#.'],
+"%":[5,'##..#/##.#./..#../.#.##/#..##'],
+"$":[6,'.#.#./.####/#..../.###./....#/####./.#.#.'],
+"€":[6,'..###/.#.../####./.#.../####./.#.../..###'],
+"£":[6,'..##./.#..#/.#.../.#.../####./.#.../.####'],
+"¥":[6,'#...#/.#.#./..#../.###./..#../.###./..#..'],
+"♥":[5,'.#.#./#####/#####/.###./..#..'],
+"■":[6,'#####/#####/#####/#####/#####/#####/#####']
+};
+/*DOT-END*/
+
+
+/*BM-START*/
+function bmDecode(font){
+  if(font.c)return font.c;font.c={};
+  for(const k in font.d){const e=font.d[k];font.c[k]={b:e[0],r:e[1].split('/').map(s=>[...s].map(v=>v==='#'?1:0))}}
+  return font.c}
+/* Lay out text with a bitmap font. Letters keep their own baseline; spacing is measured row by row
+   (so slanted letters sit close together) with at least `gap` empty columns between neighbours,
+   including diagonally. Returns {grid, missing} where grid is rows of 0/1 or null. */
+function bmLayout(text,font,gap){
+  const G=bmDecode(font),items=[],missing=[];
+  for(const ch of [...text]){
+    if(/\s/.test(ch)){items.push(null);continue}
+    const g=G[ch];if(g)items.push(g);else if(!missing.includes(ch))missing.push(ch)}
+  if(!items.some(Boolean))return {grid:null,missing};
+  let up=0,down=0;
+  for(const g of items)if(g){up=Math.max(up,g.b+1);down=Math.max(down,g.r.length-g.b-1)}
+  const R=up+down,NEG=-1e9,rows=Array.from({length:R},()=>[]),right=Array(R).fill(NEG);
+  const wordGap=(font.wg!=null?font.wg:4)+gap,tuck=font.tuck!=null?font.tuck:3;let maxRight=NEG,gapPending=false,first=true;
+  for(const g of items){
+    if(!g){gapPending=true;continue}
+    const top=up-(g.b+1),w=g.r[0].length,left=Array(R).fill(1e9);
+    g.r.forEach((row,j)=>{const i=row.indexOf(1);if(i>=0)left[top+j]=i});
+    let x0=0;
+    if(!first){
+      x0=NEG;
+      for(let r=0;r<R;r++){if(right[r]<=NEG/2)continue;
+        for(let r2=Math.max(0,r-1);r2<=Math.min(R-1,r+1);r2++)if(left[r2]<1e8)x0=Math.max(x0,right[r]+gap+1-left[r2])}
+      x0=Math.max(x0,gapPending?maxRight+1+wordGap:maxRight+1+gap-tuck)}
+    g.r.forEach((row,j)=>row.forEach((v,i)=>{if(v){rows[top+j][x0+i]=1;right[top+j]=Math.max(right[top+j],x0+i);maxRight=Math.max(maxRight,x0+i)}}));
+    first=false;gapPending=false}
+  let r0=R,r1=-1;
+  rows.forEach((row,r)=>{if(row.some(Boolean)){if(r<r0)r0=r;if(r>r1)r1=r}});
+  const grid=rows.slice(r0,r1+1).map(row=>{const o=[];for(let i=0;i<=maxRight;i++)o.push(row[i]?1:0);return o});
+  return {grid,missing}}
+/*BM-END*/
+
+/*KO-START*/
+/* Big Hangul: 1-stitch strokes drawn from a hand-made reference chart.
+   Every syllable is built in a box of the same height (and width), so words stay level even with
+   ㄹ ㅎ ㅊ ㅍ ㅆ or a bottom consonant. Vowel sticks run one row longer than the consonant beside them. */
+const KO_CHO='ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ',KO_JUNG='ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ',
+  KO_JONG=['','ㄱ','ㄲ','ㄳ','ㄴ','ㄵ','ㄶ','ㄷ','ㄹ','ㄺ','ㄻ','ㄼ','ㄽ','ㄾ','ㄿ','ㅀ','ㅁ','ㅂ','ㅄ','ㅅ','ㅆ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'],
+  KO_DBL={ㄳ:'ㄱㅅ',ㄵ:'ㄴㅈ',ㄶ:'ㄴㅎ',ㄺ:'ㄹㄱ',ㄻ:'ㄹㅁ',ㄼ:'ㄹㅂ',ㄽ:'ㄹㅅ',ㄾ:'ㄹㅌ',ㄿ:'ㄹㅍ',ㅀ:'ㄹㅎ',ㅄ:'ㅂㅅ'},
+  KO_TENSE={ㄲ:'ㄱ',ㄸ:'ㄷ',ㅃ:'ㅂ',ㅆ:'ㅅ',ㅉ:'ㅈ'},
+  KO_MIX={ㅘ:'ㅗㅏ',ㅙ:'ㅗㅐ',ㅚ:'ㅗㅣ',ㅝ:'ㅜㅓ',ㅞ:'ㅜㅔ',ㅟ:'ㅜㅣ',ㅢ:'ㅡㅣ'};
+const KO_LIM={min:12,rec:12};
+function koWidth(H){return 7+2*Math.max(0,Math.floor((H-12)/6))}
+function koCons(c,P,x,y,w,h){
+  if(w<1||h<1)return;
+  const hl=(a,b,r)=>{for(let i=a;i<=b;i++)P(x+i,y+r)},vl=(col,a,b)=>{for(let j=a;j<=b;j++)P(x+col,y+j)};
+  if(KO_TENSE[c]){const k=Math.floor((w+1)/2);koCons(KO_TENSE[c],P,x,y,k,h);koCons(KO_TENSE[c],P,x+w-k,y,k,h);return}
+  const cl=Math.floor((w-1)/2),cr=w-1-cl,mid=Math.floor((h-1)/2),
+    spread=(mx,k)=>mx>=2?mx-Math.ceil(k/3):(k<=3?1:0),
+    legs=y0=>{for(let r=y0;r<h;r++){const k=h-1-r,up=r-y0;
+      P(x+cl-Math.max(0,Math.min(spread(cl,k),up)),y+r);P(x+cr+Math.max(0,Math.min(spread(w-1-cr,k),up)),y+r)}},
+    ring=(rx,ry,rw,rh)=>{for(let i=0;i<rw;i++)for(let j=0;j<rh;j++){
+      if(i&&j&&i<rw-1&&j<rh-1)continue;if(rw>=3&&rh>=3&&(i===0||i===rw-1)&&(j===0||j===rh-1))continue;P(x+rx+i,y+ry+j)}},
+    hook=h>=8&&w>=3;
+  switch(c){
+    case 'ㄱ':hl(0,w-1,0);vl(w-1,0,hook?h-2:h-1);if(hook)P(x+w-2,y+h-1);break;
+    case 'ㄴ':vl(0,0,h-1);hl(0,w-1,h-1);break;
+    case 'ㄷ':hl(0,w-1,0);hl(0,w-1,h-1);vl(0,0,h-1);break;
+    case 'ㄹ':{const m=h>=5?mid:1;hl(0,w-1,0);vl(w-1,0,m);hl(0,w-1,m);vl(0,m,h-1);hl(0,w-1,h-1)}break;
+    case 'ㅁ':hl(0,w-1,0);hl(0,w-1,h-1);vl(0,0,h-1);vl(w-1,0,h-1);break;
+    case 'ㅂ':vl(0,0,h-1);vl(w-1,0,h-1);hl(0,w-1,mid);hl(0,w-1,h-1);break;
+    case 'ㅅ':legs(0);break;
+    case 'ㅇ':ring(0,0,w,h);break;
+    case 'ㅈ':hl(0,w-1,0);legs(1);break;
+    case 'ㅊ':{const t=h>=10?3:2;hl(Math.floor((w-1)/2),Math.floor((w-1)/2)+(w>=3?1:0),0);hl(0,w-1,t-1);legs(t)}break;
+    case 'ㅋ':hl(0,w-1,0);vl(w-1,0,hook?h-2:h-1);if(hook)P(x+w-2,y+h-1);hl(0,w-1,h>=5?mid:1+(h>3?1:0));break;
+    case 'ㅌ':hl(0,w-1,0);hl(0,w-1,mid);hl(0,w-1,h-1);vl(0,0,h-1);break;
+    case 'ㅍ':{const a=w>=5?1:0;hl(0,w-1,0);hl(0,w-1,h-1);vl(a,0,h-1);vl(w-1-a,0,h-1)}break;
+    case 'ㅎ':{const rw=w%2?w:w-1,bw=w===3?5:w,t=h>=10?2:1,ry=h>=10?4:2,dx=Math.floor((rw-1)/2);
+      hl(dx,dx+(rw>=3?1:0),0);hl(0,bw-1,t);ring(0,ry,rw,h-ry)}break;
+  }}
+/* vertical vowel sticks: geometry for a syllable of width W; tl = tick length */
+function koTick(W){return 1+Math.floor((W-7)/4)}
+function koVgeo(v,W){const tl=koTick(W);
+  if(v==='ㅣ')return {cw:W-2};
+  if('ㅏㅑ'.includes(v))return {cw:W-2-tl,ext:1};
+  if('ㅓㅕ'.includes(v))return {cw:W-2-tl,ext:1};
+  if('ㅐㅒ'.includes(v))return {cw:W-3-tl,ext:1};
+  return {cw:W-2-2*tl,ext:1}}
+function koVowV(v,P,W,U){
+  const tl=koTick(W),tr=Math.floor((U-2)/2),q=Math.round(U*.25),rows='ㅑㅕㅒㅖ'.includes(v)?[q,U-1-q]:[tr],
+    vl=(c,a,b)=>{for(let j=a;j<=b;j++)P(c,j)},hl=(a,b,r)=>{for(let i=a;i<=b;i++)P(i,r)};
+  if(v==='ㅣ')vl(W-1,0,U-1);
+  else if('ㅏㅑ'.includes(v)){const b=W-1-tl;vl(b,0,U-1);rows.forEach(r=>hl(b+1,W-1,r))}
+  else if('ㅓㅕ'.includes(v)){vl(W-1,0,U-1);rows.forEach(r=>hl(W-2-tl,W-2,r))}
+  else{const b1=W-2-tl;vl(b1,0,U-1);vl(W-1,0,U-1);
+    if('ㅐㅒ'.includes(v))rows.forEach(r=>hl(b1+1,W-2,r));else rows.forEach(r=>hl(b1-tl,b1-1,r))}}
+/* horizontal vowel: returns {ch: consonant height above it}; draws into x..x+w-1 */
+function koVowH(v,P,x,w,U,draw){
+  const t=Math.max(2,Math.round(U/3)),tj=Math.max(1,Math.round(U/3)-1);let ch;
+  if(v==='ㅡ')ch=U-2;else if(v==='ㅗ'||v==='ㅛ')ch=U-1-t;else ch=U-2-tj;
+  if(!draw)return {ch};
+  const hl=(a,b,r)=>{for(let i=a;i<=b;i++)P(x+i,r)},vl=(c,a,b)=>{for(let j=a;j<=b;j++)P(x+c,j)},
+    cx=Math.floor((w-1)/2),a=Math.floor((w-1)/3),two=[a,w-1-a];
+  if(v==='ㅡ')hl(0,w-1,U-1);
+  else if(v==='ㅗ'){vl(cx,ch,U-2);hl(0,w-1,U-1)}
+  else if(v==='ㅛ'){two.forEach(c=>vl(c,ch,U-2));hl(0,w-1,U-1)}
+  else if(v==='ㅜ'){hl(0,w-1,ch+1);vl(cx,ch+2,U-1)}
+  else{hl(0,w-1,ch+1);two.forEach(c=>vl(c,ch+2,U-1))}
+  return {ch}}
+function koSyl(code,H,W){
+  const n=code-0xAC00;return koDraw(KO_CHO[Math.floor(n/588)],KO_JUNG[Math.floor(n%588/28)],KO_JONG[n%28],H,W)}
+function koDraw(cho,jung,jong,H,W){
+  const g=Array.from({length:H},()=>Array(W).fill(0)),P=(x,y)=>{if(x>=0&&x<W&&y>=0&&y<H)g[y][x]=1};
+  const jj=KO_DBL[jong]||jong,need5=/[ㄹㅌㅎㅊ]/.test(jj),low=jong?Math.max(4,Math.round(H/3),need5?5:0):0,U=jong?H-1-low:H,mix=KO_MIX[jung],
+    cons=(x,y,w,h)=>{if(cho)koCons(cho,P,x,y,w,h)},tense=!!KO_TENSE[cho];
+  if(jung&&'ㅏㅐㅑㅒㅓㅔㅕㅖㅣ'.includes(jung)){
+    const gm=koVgeo(jung,W);cons(0,0,gm.cw+(tense&&gm.ext?1:0),(jong||cho==='ㄹ')?U:U-1);koVowV(jung,P,W,U)}
+  else if(mix){
+    const hv=mix[0],vv=mix[1],gm=koVgeo(vv,W),wl=gm.cw,m=koVowH(hv,P,0,wl,U,true);
+    cons(0,0,wl,m.ch);koVowV(vv,P,W,U)}
+  else if(jung){
+    const m=koVowH(jung,P,0,W,U,true);cons(1,0,W-2,m.ch)}
+  if(jong){const d=KO_DBL[jong],y=U+1;
+    if(d){const w1=Math.floor((W-1)/2);koCons(d[0],P,0,y,w1,low);koCons(d[1],P,w1+1,y,W-1-w1,low)}
+    else koCons(jong,P,1,y,W-1,low)}
+  return g}
+function koLayout(text,H,gap){
+  const W=koWidth(H),cols=[],missing=[];let any=false,pend=false;
+  const add=s=>{for(let x=0;x<W;x++)cols.push(s.map(r=>r[x]))};
+  for(const ch of [...text]){
+    const c=ch.codePointAt(0);
+    if(/\s/.test(ch)){if(cols.length)pend=true;continue}
+    let s=null;
+    if(c>=0xAC00&&c<=0xD7A3)s=koSyl(c,H,W);
+    else if(KO_CHO.includes(ch))s=koDraw(ch,null,'',H,W);
+    else missing.push(ch);
+    if(!s)continue;
+    if(cols.length)for(let i=0;i<(pend?gap+Math.round(W/2):gap);i++)cols.push(null);
+    pend=false;any=true;add(s)}
+  if(!any)return {grid:null,missing:[...new Set(missing)]};
+  return {grid:Array.from({length:H},(_,y)=>cols.map(c=>c?c[y]:0)),missing:[...new Set(missing)]}}
+/*KO-END*/
+
+/* text -> pattern: glyph outline -> 1-cell centre line -> grid cells */
+/*TXT-START*/
+const TS=8;
+const FSTACK='"Helvetica Neue",Helvetica,Arial,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR","Noto Sans CJK KR",sans-serif';
+const isHangul=ch=>{const c=ch.codePointAt(0);return (c>=0xAC00&&c<=0xD7A3)||(c>=0x1100&&c<=0x11FF)||(c>=0x3130&&c<=0x318F)};
+const kindOf=t=>[...t].some(isHangul)?'ko':'en';
+const LIM={en:{min:5,rec:7},ko:{min:11,rec:13}};
+function zsThin(a,w,h){
+  const W2=w+2,P=new Uint8Array(W2*(h+2));
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++)P[(y+1)*W2+x+1]=a[y*w+x];
+  let ch=true;
+  while(ch){ch=false;
+    for(let st=0;st<2;st++){const rem=[];
+      for(let y=1;y<=h;y++)for(let x=1;x<=w;x++){const i=y*W2+x;if(!P[i])continue;
+        const p2=P[i-W2],p3=P[i-W2+1],p4=P[i+1],p5=P[i+W2+1],p6=P[i+W2],p7=P[i+W2-1],p8=P[i-1],p9=P[i-W2-1];
+        const B=p2+p3+p4+p5+p6+p7+p8+p9;if(B<2||B>6)continue;
+        const A=(!p2&&p3?1:0)+(!p3&&p4?1:0)+(!p4&&p5?1:0)+(!p5&&p6?1:0)+(!p6&&p7?1:0)+(!p7&&p8?1:0)+(!p8&&p9?1:0)+(!p9&&p2?1:0);
+        if(A!==1)continue;
+        if(st===0){if(p2*p4*p6||p4*p6*p8)continue}else{if(p2*p4*p8||p2*p6*p8)continue}
+        rem.push(i)}
+      if(rem.length){ch=true;for(const i of rem)P[i]=0}}}
+  const out=new Uint8Array(w*h);
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++)out[y*w+x]=P[(y+1)*W2+x+1];
+  return out}
+function countComp(m,w,h,c8){
+  const seen=new Uint8Array(w*h),st=[];let n=0;
+  for(let i=0;i<w*h;i++){if(!m[i]||seen[i])continue;n++;seen[i]=1;st.push(i);
+    while(st.length){const c=st.pop(),x=c%w,y=(c/w)|0;
+      for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){
+        if(!dx&&!dy)continue;if(!c8&&dx&&dy)continue;
+        const nx=x+dx,ny=y+dy;if(nx<0||ny<0||nx>=w||ny>=h)continue;
+        const j=ny*w+nx;if(m[j]&&!seen[j]){seen[j]=1;st.push(j)}}}}
+  return n}
+function countHoles(m,w,h){
+  const pw=w+2,ph=h+2,inv=new Uint8Array(pw*ph).fill(1);
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++)if(m[y*w+x])inv[(y+1)*pw+x+1]=0;
+  return countComp(inv,pw,ph,false)-1}
+function skeletonCells(a,w,h,R){
+  const sk=zsThin(a,w,h),pts=[];let x0=1e9,xm=0;
+  for(let i=0;i<sk.length;i++)if(sk[i]){const x=i%w,y=(i/w)|0;pts.push(x,y);if(x<x0)x0=x;if(x>xm)xm=x}
+  if(!pts.length)return null;
+  const C0=countComp(sk,w,h,true),H0=countHoles(sk,w,h);let best=null;
+  for(let ox=0;ox<TS;ox+=2){
+    const cw=Math.floor((xm-x0+ox)/TS)+1,r=new Uint8Array(cw*R);
+    for(let k=0;k<pts.length;k+=2)r[Math.floor(pts[k+1]/TS)*cw+Math.floor((pts[k]-x0+ox)/TS)]=1;
+    let n=0;for(let i=0;i<r.length;i++)n+=r[i];
+    const key=Math.abs(countComp(r,cw,R,true)-C0)+Math.abs(countHoles(r,cw,R)-H0);
+    if(!best||key<best.key||(key===best.key&&n<best.n))best={key,n,r,cw}}
+  let c0=best.cw,c1=-1;
+  for(let y=0;y<R;y++)for(let x=0;x<best.cw;x++)if(best.r[y*best.cw+x]){if(x<c0)c0=x;if(x>c1)c1=x}
+  const rows=[];for(let y=0;y<R;y++){const row=[];for(let x=c0;x<=c1;x++)row.push(best.r[y*best.cw+x]);rows.push(row)}
+  return {w:c1-c0+1,rows}}
+/*TXT-END*/
+function textPattern(text,rows){
+  const kind=kindOf(text),ref=kind==='ko'?'한':'H';
+  const c=document.createElement('canvas'),x=c.getContext('2d',{willReadFrequently:true});
+  x.font=`200px ${FSTACK}`;const m=x.measureText(ref);
+  let asc=m.actualBoundingBoxAscent,desc=m.actualBoundingBoxDescent;
+  if(!(asc+desc>0)){asc=kind==='ko'?170:144;desc=kind==='ko'?10:0}
+  const fs=rows*TS/(asc+desc)*200,ascS=asc*fs/200;
+  const A=Math.ceil(rows*.35)+1,hgt=(A+rows+A)*TS,yb=Math.round(A*TS+ascS),R=Math.floor(hgt/TS)+1,font=`${fs}px ${FSTACK}`;
+  const parts=[];
+  for(const ch of [...text]){
+    if(/\s/.test(ch)){parts.push({sp:true});continue}
+    x.font=font;const w=Math.ceil(x.measureText(ch).width)+4*TS;
+    c.width=w;c.height=hgt;x.font=font;x.textBaseline='alphabetic';x.fillStyle='#000';x.fillText(ch,2*TS,yb);
+    const d=x.getImageData(0,0,w,hgt).data,a=new Uint8Array(w*hgt);let any=false;
+    for(let i=0;i<a.length;i++)if(d[i*4+3]>127){a[i]=1;any=true}
+    if(!any)continue;
+    const gc=skeletonCells(a,w,hgt,R);if(gc)parts.push(gc)}
+  if(!parts.some(p=>!p.sp))return null;
+  const sp=Math.max(2,Math.floor(rows*2/5)),out=Array.from({length:R},()=>[]);
+  parts.forEach((p,i)=>{
+    if(i)for(let r=0;r<R;r++)out[r].push(0);
+    if(p.sp){for(let r=0;r<R;r++)for(let k=0;k<sp;k++)out[r].push(0)}
+    else for(let r=0;r<R;r++)for(let k=0;k<p.w;k++)out[r].push(p.rows[r][k])});
+  let r0=R,r1=-1,c0=1e9,c1=-1;
+  out.forEach((row,r)=>row.forEach((v,k)=>{if(v){if(r<r0)r0=r;if(r>r1)r1=r;if(k<c0)c0=k;if(k>c1)c1=k}}));
+  return out.slice(r0,r1+1).map(row=>row.slice(c0,c1+1))}
+
+/* Enter Text: choose a font, check the preview, add it to the grid */
+const FONTS=[
+  {id:'bi',name:'Plump Italic',cap:'Chunky, curvy italics.',bm:{d:BF_BOLDITALIC}},
+  {id:'dot',name:'Matrix',cap:'The simplest font: every stroke is one stitch wide.',bm:{d:BF_DOT,tuck:0,wg:2}},
+  {id:'ko',name:'Hangul (Korean only)',cap:'Big, airy Korean characters for larger projects',ko:true},
+  {id:'auto',name:'Auto outline',cap:'Type text to turn it into rough shapes.',bm:null}
+];
+let lastMode='bm',curFont=FONTS[0],tGap=1,tb=null,hTouched=false,lastKind='en',tt=0;
+function paintGrid(c,b,cs,lines){
+  const bw=b[0].length,bh=b.length,w=bw*cs,h=bh*cs,r=window.devicePixelRatio||1,x=c.getContext('2d');
+  c.width=w*r;c.height=h*r;c.style.width=w+'px';c.style.height=h+'px';x.setTransform(r,0,0,r,0,0);
+  if(lines){x.strokeStyle='#e3e0ea';x.lineWidth=1;x.beginPath();
+    for(let i=0;i<=bw;i++){x.moveTo(i*cs+.5,0);x.lineTo(i*cs+.5,h)}
+    for(let j=0;j<=bh;j++){x.moveTo(0,j*cs+.5);x.lineTo(w,j*cs+.5)}
+    x.stroke()}
+  x.fillStyle='#26232b';
+  x.strokeStyle='#26232b';x.lineWidth=Math.max(1,cs*.12);
+  b.forEach((row,j)=>row.forEach((v,i)=>{if(v===2)x.strokeRect(i*cs+cs*.22,j*cs+cs*.22,cs*.56,cs*.56);else if(v)x.fillRect(i*cs,j*cs,cs,cs)}))}
+function clearCanvas(c){c.width=1;c.height=1;c.style.width=c.style.height='0'}
+function tDraw(){
+  const c=$('tpv');
+  if(!tb)return clearCanvas(c);
+  const cs=Math.max(2,Math.min(14,Math.floor(374/tb[0].length)));paintGrid(c,tb,cs,cs>=6)}
+function drawSamples(t){
+  const s=(t.trim()||'Abc').slice(0,14);
+  FONTS.forEach(f=>{if(!f.bm&&!f.ko)return;
+    let r;const c=f.el.querySelector('canvas'),hs=[...s].filter(ch=>ch.codePointAt(0)>=0xAC00&&ch.codePointAt(0)<=0xD7A3).join('').slice(0,4)||'가나다';
+    r=f.ko?koLayout(hs,KO_LIM.min,tGap):bmLayout(s,f.bm,tGap);
+    if(!r.grid&&f.bm)r=bmLayout('Abc',f.bm,tGap);
+    if(!r.grid)return clearCanvas(c);
+    paintGrid(c,r.grid,Math.max(2,Math.min(4,Math.floor(150/r.grid[0].length))),false)})}
+FONTS.forEach(f=>{
+  const b=document.createElement('button');b.type='button';b.className='fchip';b.setAttribute('role','radio');
+  b.innerHTML=`<span class="fn">${f.name}</span>${f.bm||f.ko?'<canvas></canvas>':''}<span class="fc">${f.cap}</span>`;
+  b.onclick=()=>{curFont=f;chipSync();tUpdate()};
+  $('fontlist').appendChild(b);f.el=b});
+function chipSync(){FONTS.forEach(f=>{f.el.classList.toggle('sel',f===curFont);f.el.setAttribute('aria-checked',String(f===curFont))})}
+chipSync();
+function tUpdate(){
+  const t=$('ttxt').value,bm=curFont.bm;let msg='',warn='';
+  const isKo=!!curFont.ko;
+  $('autoopts').hidden=!!bm;$('gapopt').hidden=!(bm||isKo);$('tnote').hidden=isKo;
+  if(isKo){
+    if(lastMode!=='ko'){lastMode='ko';if(!hTouched)$('thh').value=KO_LIM.rec}
+    const hh=Math.round(+$('thh').value)||0,bad=hh<KO_LIM.min||hh>40;
+    $('autoopts').hidden=false;
+    $('thint').innerHTML=`한글: at least <b>${KO_LIM.min}</b> rows, recommended <b>${KO_LIM.rec}</b>. Every syllable gets the same height. Go taller for roomier ㄹ ㅎ ㅊ ㅍ and bottom consonants.`;
+    $('thint').classList.toggle('bad',bad);
+    const r=(t.trim()&&!bad)?koLayout(t,hh,tGap):{grid:null,missing:[]};tb=r.grid;
+    if(r.missing.length)warn=`Not in this font, so skipped: ${r.missing.join(' ')}`;
+    if(bad)msg=hh>40?'Keep it to 40 rows or fewer.':`Too small to stay readable. Use ${KO_LIM.min} rows or more.`;
+    else if(!t.trim())msg='Type 한글 to see a preview.';
+    else if(!tb)msg='This font only has 한글 syllables. Try another font for other characters.';
+  }else if(bm){
+    lastMode='bm';
+    const r=t.trim()?bmLayout(t,bm,tGap):{grid:null,missing:[]};tb=r.grid;
+    if(r.missing.length)warn=`Not in this font, so skipped: ${r.missing.join(' ')}`;
+    if(!t.trim())msg='Type something to see a preview.';
+    else if(!tb)msg='None of these characters are in this font. Try Auto outline.';
+  }else{
+    const k=kindOf(t),L=LIM[k];
+    if(lastMode!=='auto'){lastMode='auto';lastKind=k;if(!hTouched)$('thh').value=L.rec}
+    if(k!==lastKind){lastKind=k;if(!hTouched)$('thh').value=L.rec}
+    const hh=Math.round(+$('thh').value)||0,bad=hh<L.min||hh>40;
+    $('thint').innerHTML=`${k==='ko'?'한글':'English'}: at least <b>${L.min}</b> rows, recommended <b>${L.rec}</b>`;
+    $('thint').classList.toggle('bad',bad);
+    tb=(t.trim()&&!bad)?textPattern(t,hh):null;
+    if(bad)msg=hh>40?'Keep it to 40 rows or fewer.':`Too small to stay readable. Use ${L.min} rows or more.`;
+    else if(!t.trim())msg='Type something to see a preview.';
+    else if(!tb)msg='Nothing to draw for that text.';
+  }
+  if(tb){const bw=tb[0].length,bh=tb.length,n=tb.flat().filter(Boolean).length;
+    if(bw+2>300){msg='Too long for one line (max 300 columns). Try fewer letters.';tb=null}
+    else{msg=`${bw} wide × ${bh} tall · ${n} stitches`;const nw=Math.max(W,bw+2),nh=Math.max(H,bh+2);if(nw>W||nh>H)msg+=` · grid will grow to ${nw} × ${nh}`}}
+  $('tinfo').textContent=msg;$('twarn').textContent=warn;$('twarn').hidden=!warn;$('tadd').disabled=!tb;
+  tDraw();drawSamples(t)}
+function insertText(b){
+  const bw=b[0].length,bh=b.length,nw=Math.max(W,bw+2),nh=Math.max(H,bh+2);let grew=false;
+  if(nw>W||nh>H){push();grew=true;for(let i=H;i<nh;i++)g.unshift(Array(W).fill(0));g.forEach(r=>{while(r.length<nw)r.push(0)})}
+  H=g.length;W=g[0].length;
+  startFloat(b,Math.floor((W-bw)/2),Math.floor((H-bh)/2),grew)}
+$('txt').onclick=()=>{nf();$('txtm').hidden=false;$('ttxt').focus();tUpdate()};
+const closeTxt=()=>{$('txtm').hidden=true};
+$('tcancel').onclick=closeTxt;
+$('txtm').addEventListener('click',e=>{if(e.target===$('txtm'))closeTxt()});
+const tLater=()=>{clearTimeout(tt);tt=setTimeout(tUpdate,120)};
+$('ttxt').addEventListener('input',tLater);
+$('ttxt').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();$('tadd').click()}else if(e.key==='Escape')closeTxt()});
+$('tgap').addEventListener('change',e=>{tGap=+e.target.value;tUpdate()});
+$('thh').addEventListener('input',()=>{hTouched=true;tLater()});
+$('thh').addEventListener('keydown',e=>{if(e.key==='Escape')closeTxt()});
+$('trec').onclick=()=>{hTouched=false;$('thh').value=curFont.ko?KO_LIM.rec:LIM[kindOf($('ttxt').value)].rec;tUpdate()};
+$('tadd').onclick=()=>{clearTimeout(tt);tUpdate();if(!tb)return;const b=tb;closeTxt();insertText(b)};
+
+/* download: share sheet on iPad, named file download elsewhere */
+$('png').onclick=()=>{const c=document.createElement('canvas');render(c,40,1,true);
+  c.toBlob(async b=>{
+    const nm=((tabs[ti]&&tabs[ti].name)||'').replace(/[\\\/:*?"<>|\x00-\x1f]/g,'').trim().replace(/\s+/g,'-'),name='crochet-studio'+(nm?'-'+nm:'')+'.png',file=new File([b],name,{type:'image/png'});
+    if(navigator.maxTouchPoints>1&&navigator.canShare&&navigator.canShare({files:[file]})){
+      try{await navigator.share({files:[file],title:'Crochet Studio pattern'});return}catch(e){if(e.name==='AbortError')return}
+    }
+    const u=URL.createObjectURL(file),a=document.createElement('a');a.href=u;a.download=name;
+    document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),5000);
+  },'image/png')};
+
+/* Add > Border: frame the design with a repeating band */
+const bmp=(rows,gap)=>{const u=rows.map(r=>[...r].map(c=>c==='#'?1:0));return {unit:u,tile:u.map(r=>r.concat(Array(gap).fill(0)))}};
+const KEY_B=bmp(['#####','#...#','#.#.#','#.#..','#.###'],1);KEY_B.tile[4][5]=1;
+const FLW_B=bmp(['..#..','.###.','##.##','.###.','..#..'],3);FLW_B.tile[2][6]=1;
+const TNY_B=bmp(['.#.','#.#','.#.'],2);
+const BORDERS=[
+  {id:'line',name:'Line',t:1,thick:true,cap:'One clean line',tile:[[1]]},
+  {id:'double',name:'Double line',t:3,cap:'Two lines with a gap',tile:[[1],[0],[1]]},
+  {id:'dash',name:'Dashes',t:1,cap:'Short and sweet',tile:[[1,1,0]]},
+  {id:'checker',name:'Checker',t:2,cap:'Two-row checkerboard',tile:[[1,0],[0,1]]},
+  {id:'zig',name:'Zigzag',t:3,cap:'Little peaks',tile:[[1,0,0,0],[0,1,0,1],[0,0,1,0]]},
+  {id:'tri',name:'Triangles',t:3,cap:'Pointy edge',tile:[[1,1,1,1,1,1],[0,1,1,1,1,0],[0,0,1,1,0,0]]},
+  {id:'key',name:'Greek key',t:5,cap:'Simple meander, corners and sides fit evenly',fit:true,vrev:true,sample:[29,17],corner:KEY_B.unit,tile:KEY_B.tile},
+  {id:'flower',name:'Flower chain',t:5,cap:'Little flowers in a row',fit:true,vrev:true,sample:[29,21],corner:FLW_B.unit,tile:FLW_B.tile},
+  {id:'tiny',name:'Tiny flowers',t:3,cap:'Small four-petal blossoms',fit:true,vrev:true,sample:[28,18],corner:TNY_B.unit,tile:TNY_B.tile}
+];
+/* where the band goes: returns the new grid (grown if needed) or {error} */
+/* column of the repeating tile (unit then gap) for each position along a side of length L */
+function fitCols(L,T,P){const G=P-T;if(L<G+P)return Array(Math.max(0,L)).fill(P-1);
+  const r=(L-G)%P,r1=r>>1,r2=r-r1;return Array.from({length:L},(_,p)=>p<r1||p>=L-r2?P-1:(p-r1+T)%P)}
+function ringStr(gr,r){let t='';for(let y=0;y<r.h;y++)for(let x=0;x<r.w;x++)if(Math.min(x,y,r.w-1-x,r.h-1-y)<r.T){const row=gr[r.y0+y];t+=row&&row[r.x0+x]!==undefined?row[r.x0+x]:'x'}return t}
+/* the border added last in this tab, if it is still exactly as it was added */
+function oldBorder(){const o=tabs[ti]&&tabs[ti].bd;
+  return o&&o.x0>=0&&o.y0>=0&&o.y0+o.h<=g.length&&o.x0+o.w<=g[0].length&&ringStr(g,o)===o.s?o:null}
+function stripBorder(gr,o){
+  const n=gr.map(r=>r.slice());
+  for(let y=0;y<o.h;y++)for(let x=0;x<o.w;x++)if(Math.min(x,y,o.w-1-x,o.h-1-y)<o.T)n[o.y0+y][o.x0+x]=0;
+  const blankRow=y=>n[y].every(v=>!v),blankCol=x=>n.every(r=>!r[x]);
+  for(let i=0;i<o.T&&o.y0===0&&n.length>1&&blankRow(0);i++)n.shift();
+  for(let i=0;i<o.T&&o.y0+o.h===gr.length&&n.length>1&&blankRow(n.length-1);i++)n.pop();
+  for(let i=0;i<o.T&&o.x0===0&&n[0].length>1&&blankCol(0);i++)n.forEach(r=>r.shift());
+  for(let i=0;i<o.T&&o.x0+o.w===gr[0].length&&n[0].length>1&&blankCol(n[0].length-1);i++)n.forEach(r=>r.pop());
+  return n}
+function computeBorder(g0,b,gap,mode,thick){
+  const H0=g0.length,W0=g0[0].length,T=b.thick?thick:b.t,tile=b.thick?Array.from({length:T},()=>[1]):b.tile,P=tile[0].length;
+  let x0=1e9,y0=1e9,x1=-1,y1=-1;
+  g0.forEach((r,y)=>r.forEach((v,x)=>{if(v){x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y)}}));
+  const has=x1>=0,e=gap+T;let O;
+  if(has&&mode==='around')O={x0:x0-e,y0:y0-e,x1:x1+e,y1:y1+e};
+  else if(has)O={x0:Math.min(0,x0-e),y0:Math.min(0,y0-e),x1:Math.max(W0-1,x1+e),y1:Math.max(H0-1,y1+e)};
+  else O={x0:0,y0:0,x1:W0-1,y1:H0-1};
+  if(b.fit){/* add rows/columns so whole pattern units fit between the corners */
+    const G=P-T,need=n=>{const m=Math.max(n,2*T+G+P);return m+(P-((m-2*T-G)%P))%P},
+      ew=need(O.x1-O.x0+1)-(O.x1-O.x0+1),eh=need(O.y1-O.y0+1)-(O.y1-O.y0+1);
+    O.x0-=ew>>1;O.x1+=ew-(ew>>1);O.y0-=eh>>1;O.y1+=eh-(eh>>1)}
+  const L=Math.max(0,-O.x0),Tp=Math.max(0,-O.y0),R=Math.max(0,O.x1-(W0-1)),B=Math.max(0,O.y1-(H0-1)),nw=W0+L+R,nh=H0+Tp+B;
+  if(nw>300||nh>300)return {error:'That would make the grid larger than 300 stitches. Try a smaller space or thickness.',nw,nh};
+  const g=blank(nw,nh);g0.forEach((r,y)=>r.forEach((v,x)=>{g[y+Tp][x+L]=v}));
+  const ox0=O.x0+L,oy0=O.y0+Tp,w=O.x1-O.x0+1,h=O.y1-O.y0+1;
+  const roomy=w>=2*T&&h>=2*T,fc=b.fit&&roomy?[fitCols(w-2*T,T,P),fitCols(h-2*T,T,P)]:null;
+  for(let ly=0;ly<h;ly++)for(let lx=0;lx<w;lx++){
+    const v=Math.min(lx,ly,w-1-lx,h-1-ly);if(v>=T)continue;let u;
+    if(roomy){/* corners get their own square, each side then repeats the pattern from its corner */
+      const cx=lx<T?lx:lx>=w-T?w-1-lx:-1,cy=ly<T?ly:ly>=h-T?h-1-ly:-1;let val;
+      if(cx>=0&&cy>=0)val=b.corner?b.corner[cy][cx]:tile[Math.min(cx,cy)][0];
+      else if(cy>=0)val=tile[cy][fc?fc[0][lx-T]:(lx-T)%P];
+      else val=(b.vrev?tile[T-1-cx]:tile[cx])[fc?fc[1][ly-T]:(ly-T)%P];
+      g[oy0+ly][ox0+lx]=val;continue}
+    if(ly===v&&lx>=v&&lx<=w-1-v)u=lx;
+    else if(lx===w-1-v&&ly>v&&ly<=h-1-v)u=(w-1)+ly;
+    else if(ly===h-1-v&&lx>=v&&lx<w-1-v)u=(w-1)+(h-1)+(w-1-lx);
+    else u=2*(w-1)+(h-1)+(h-1-ly);
+    g[oy0+ly][ox0+lx]=tile[v][((u%P)+P)%P]}
+  return {g,nw,nh,grewW:nw-W0,grewH:nh-H0,empty:!has,ring:{x0:ox0,y0:oy0,w,h,T}}}
+let curB=BORDERS[0];
+BORDERS.forEach(b=>{
+  const el=document.createElement('button');el.type='button';el.className='fchip';el.setAttribute('role','radio');
+  el.innerHTML=`<span class="fn">${b.name}</span><canvas></canvas><span class="fc">${b.cap}</span>`;
+  el.onclick=()=>{curB=b;bdUpdate()};$('bdlist').appendChild(el);b.el=el;
+  const sz=b.sample||[26,14],s=computeBorder(blank(sz[0],sz[1]),b,0,'edge',2);paintGrid(el.querySelector('canvas'),s.g,3,false)});
+let bdRes=null;
+function bdUpdate(){
+  BORDERS.forEach(b=>{b.el.classList.toggle('sel',b===curB);b.el.setAttribute('aria-checked',String(b===curB))});
+  $('bthw').hidden=!curB.thick;
+  const gap=Math.min(20,Math.max(0,Math.round(+$('bgap').value)||0)),th=Math.min(5,Math.max(1,Math.round(+$('bth').value)||1));
+  const old=oldBorder();$('bwhw').hidden=!old;
+  bdRes=computeBorder(old&&$('bwhat').value==='replace'?stripBorder(g,old):g,curB,gap,$('bmode').value,th);
+  const c=$('bpv');
+  if(bdRes.error){clearCanvas(c);$('binfo').textContent=bdRes.error;$('badd').disabled=true;return}
+  const r=bdRes,cs=Math.max(2,Math.min(12,Math.floor(374/r.nw),Math.floor(240/r.nh)));
+  paintGrid(c,r.g,cs,cs>=5);
+  let m=`${r.nw} × ${r.nh}`;
+  if(r.grewW||r.grewH)m+=` · grid grows by ${[r.grewW?r.grewW+' column'+(r.grewW>1?'s':''):'',r.grewH?r.grewH+' row'+(r.grewH>1?'s':''):''].filter(Boolean).join(' and ')}`;
+  if(r.empty)m+=' · your grid is empty, so the border goes around the whole grid';
+  $('binfo').textContent=m;$('badd').disabled=false}
+$('bdr').onclick=()=>{nf();$('bm').hidden=false;bdUpdate()};
+const closeBd=()=>{$('bm').hidden=true};
+$('bcancel').onclick=closeBd;
+$('bm').addEventListener('click',e=>{if(e.target===$('bm'))closeBd()});
+['bmode','bwhat'].forEach(i=>$(i).addEventListener('change',bdUpdate));
+['bgap','bth'].forEach(i=>$(i).addEventListener('input',bdUpdate));
+$('bm').addEventListener('keydown',e=>{if(e.key==='Escape')closeBd()});
+$('badd').onclick=()=>{bdUpdate();if(!bdRes||bdRes.error)return;push();g=bdRes.g;sel=null;if(tabs[ti])tabs[ti].bd=Object.assign({},bdRes.ring,{s:ringStr(g,bdRes.ring)});closeBd();sync()};
+
+/* start */
+const okG=a=>Array.isArray(a)&&a.length&&Array.isArray(a[0])&&a[0].length;
+try{const s=JSON.parse(localStorage.getItem(KEY2));
+  if(s&&Array.isArray(s.tabs)){tabs=s.tabs.filter(t=>okG(t.g)).slice(0,12).map((t,i)=>({name:String(t.name||'Grid '+(i+1)).slice(0,24),g:t.g,rot:(t.rot|0)%4,undo:[],redo:[],cell:28}));ti=Math.min(Math.max(0,s.cur|0),tabs.length-1)}}catch(e){}
+if(!tabs.length){let g1=null,r1=0;
+  try{const s=JSON.parse(localStorage.getItem(KEY)),a=Array.isArray(s)?s:s&&s.g;if(okG(a)){g1=a;r1=(s.rot|0)%4}}catch(e){}
+  tabs=[{name:'Grid 1',g:g1||blank(30,12),rot:r1,undo:[],redo:[],cell:28}];ti=0}
+{const t=tabs[ti];g=t.g;rot=t.rot;undo=t.undo;redo=t.redo;cell=t.cell}
+sync();renderTabs();
+</script>
+</body>
+</html>
