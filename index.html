@@ -101,6 +101,9 @@ footer{text-align:center;font-size:12px;color:#b5b0bf;padding:18px 0 90px}
 .card .acts button{padding:8px 16px}
 .card button:disabled{opacity:.45;cursor:default}
 .card [hidden]{display:none!important}
+.filebtn{position:relative;display:inline-block;overflow:hidden;cursor:pointer;padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:#fff;font-size:14px}
+.filebtn.pri{background:var(--ink);color:#fff;border-color:var(--ink)}
+.filebtn input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;font-size:100px}
 .fl{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}
 .fchip{flex:1 1 170px;display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;padding:9px 11px;border-radius:10px;background:#fff}
 .fchip.sel{border-color:var(--acc);box-shadow:0 0 0 2px rgba(63,74,138,.2);background:#f7f7fd}
@@ -135,6 +138,7 @@ footer{text-align:center;font-size:12px;color:#b5b0bf;padding:18px 0 90px}
   <div class="grp"><span>Add</span>
     <button class="ico" id="txt" title="Turn a word or name into a pattern"><svg viewBox="0 0 24 24"><path d="M5 7V5h14v2"/><path d="M12 5v14"/><path d="M9 19h6"/></svg>Enter Text</button>
     <button class="ico" id="bdr" title="Frame your design with a border"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="1"/><rect x="8" y="8" width="8" height="8" rx="1"/></svg>Border</button>
+    <button class="ico" id="imp" title="Turn a picture or a chart image into a pattern"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="1.5"/><circle cx="9" cy="10" r="1.6"/><path d="M5 17l5-4.5 3.5 3L16 13l3 3.5"/></svg>Image</button>
   </div>
   <div class="grp"><span>New grid</span><input type="number" id="nw" min="1" max="200" value="30" aria-label="Width"> ×
     <input type="number" id="nh" min="1" max="200" value="12" aria-label="Height"><button id="new">Create</button></div>
@@ -206,6 +210,32 @@ footer{text-align:center;font-size:12px;color:#b5b0bf;padding:18px 0 90px}
     <p id="binfo"></p>
     <p class="draftnote">If your design touches the edge, rows and columns are added automatically so the border fits around it.</p>
     <div class="acts"><button id="bcancel" type="button">Cancel</button><button id="badd" type="button" class="pri">Add border</button></div>
+  </div>
+</div>
+<div class="modal" id="im" hidden>
+  <div class="card" role="dialog" aria-label="Import image" style="max-height:calc(100vh - 32px);overflow:auto">
+    <h2>Import image</h2>
+    <p style="margin:0 0 12px;font-size:13.5px;color:var(--mut);line-height:1.45">Charts that already have a grid keep their size. Any other picture gets a grid of its own.</p>
+    <div id="imdrop" class="pv" style="justify-content:center;flex-direction:column;gap:8px;padding:26px 10px">
+      <label id="impick" class="pri filebtn">Choose an image…<input type="file" id="imfile" accept="image/*,.png,.jpg,.jpeg,.webp,.gif"></label><span class="nt2">or drop a PNG / JPG here</span></div>
+    <div id="imbody" hidden>
+      <div class="hrow"><label style="flex:1">This picture is<select id="immode" style="display:block;margin-top:4px;font-size:16px;width:100%"><option value="grid">A chart with a grid (keep its squares)</option><option value="pic">A plain picture (make my own grid)</option></select></label></div>
+      <p id="imnote" style="margin:4px 0 10px;font-size:13px;color:var(--mut)"></p>
+      <div class="hrow" id="impic" hidden>
+        <label>Width (squares)<input type="number" id="imw" min="5" max="200" value="60"></label>
+        <label>Style<select id="imstyle" style="display:block;margin-top:4px;font-size:16px"><option value="solid">Solid shapes</option><option value="line">Outline only</option></select></label>
+      </div>
+      <div class="hrow">
+        <label style="flex:1">Amount filled<input type="range" id="imthr" min="0" max="100" value="50" style="width:100%"><span style="display:flex;justify-content:space-between;font-size:11.5px"><span>less</span><span>more</span></span></label>
+        <label style="white-space:nowrap"><input type="checkbox" id="iminv" style="display:inline;width:auto;margin:0 4px 0 0">Swap dark / light</label>
+      </div>
+      <div class="hrow">
+        <label>Put it<select id="imwhere" style="display:block;margin-top:4px;font-size:16px"><option value="tab">In a new tab</option><option value="here">On my current grid</option></select></label>
+      </div>
+      <div class="pv" id="impv" style="gap:14px;justify-content:center;align-items:flex-start"><canvas id="imsrc"></canvas><canvas id="imout"></canvas></div>
+      <p style="margin:6px 0 0"><label id="imchg" class="filebtn">Choose another image<input type="file" id="imfile2" accept="image/*,.png,.jpg,.jpeg,.webp,.gif"></label></p>
+    </div>
+    <div class="acts"><button id="imcancel" type="button">Cancel</button><button id="imgo" type="button" class="pri" disabled>Import</button></div>
   </div>
 </div>
 <div class="modal" id="cm" hidden>
@@ -986,6 +1016,170 @@ function insertText(b){
   if(nw>W||nh>H){push();grew=true;for(let i=H;i<nh;i++)g.unshift(Array(W).fill(0));g.forEach(r=>{while(r.length<nw)r.push(0)})}
   H=g.length;W=g[0].length;
   startFloat(b,Math.floor((W-bw)/2),Math.floor((H-bh)/2),grew)}
+/* ---------- Import image ---------- */
+function imGray(d,w,h){const o=new Float32Array(w*h);for(let i=0;i<w*h;i++){const a=d[i*4+3]/255;o[i]=(.299*d[i*4]+.587*d[i*4+1]+.114*d[i*4+2])*a+255*(1-a)}return o}
+function imOtsu(v){
+  const hs=new Array(256).fill(0);let n=0,sum=0;
+  for(const x of v){hs[Math.max(0,Math.min(255,Math.round(x)))]++;n++}
+  for(let i=0;i<256;i++)sum+=i*hs[i];
+  let wB=0,sB=0,best=-1,t=128;
+  for(let i=0;i<255;i++){wB+=hs[i];if(!wB)continue;const wF=n-wB;if(!wF)break;sB+=i*hs[i];
+    const mB=sB/wB,mF=(sum-sB)/wF,b=wB*wF*(mB-mF)*(mB-mF);if(b>best){best=b;t=i}}
+  return t}
+/* how strongly each column (or row) looks like a thin line */
+function imProfile(gr,w,h,vert){
+  const n=vert?w:h,m=vert?h:w,s=new Float32Array(n),st=vert?1:w,qs=vert?w:1;
+  for(let p=3;p<n-3;p++){let c=0;
+    for(let q=0;q<m;q++){const i=q*qs+p*st,v=gr[i];
+      const l=Math.max(gr[i-2*st],gr[i-3*st]),r=Math.max(gr[i+2*st],gr[i+3*st]);
+      if(v<Math.min(l,r)-12)c++}
+    s[p]=c/m}
+  return s}
+/* finds evenly spaced lines in a profile: {p,o,k0,k1} (line k sits at o+k*p, cells k0..k1) or null */
+function imFit(s,len){
+  const at=x=>{x=Math.round(x);return x<0||x>=len?0:s[x]};
+  const peak=(x,r)=>{let m=0;for(let d=-r;d<=r;d++)m=Math.max(m,at(x+d));return m};
+  let mean=0,top=0;for(let i=0;i<len;i++){mean+=s[i];if(s[i]>top)top=s[i]}mean/=len;
+  if(top<.06)return null;
+  const maxL=Math.floor(len/2),ac=new Float32Array(maxL+2);
+  for(let l=3;l<=maxL;l++){let a=0;for(let x=0;x+l<len;x++)a+=(s[x]-mean)*(s[x+l]-mean);ac[l]=a/(len-l)}
+  let amax=0;for(let l=5;l<=maxL;l++)if(ac[l]>amax)amax=ac[l];
+  if(amax<=0)return null;
+  const cands=[];
+  for(let l=5;l<maxL&&cands.length<5;l++)if(ac[l]>=ac[l-1]&&ac[l]>=ac[l+1]&&ac[l]>=.25*amax)cands.push(l);
+  for(const L of cands){const r=imFitFrom(s,len,L,ac,maxL,at,peak,top);if(r)return r}
+  return null}
+function imFitFrom(s,len,L,ac,maxL,at,peak,top){
+  let p=L;
+  for(let m=2,mm=Math.floor(len*.6/L);m<=mm;m++){const c=m*p,r=Math.max(1.5,m*.05);let bl=0,bd=1e9;
+    for(let l=Math.max(4,Math.ceil(c-r));l<=Math.min(maxL-1,Math.floor(c+r));l++)
+      if(ac[l]>=ac[l-1]&&ac[l]>=ac[l+1]&&ac[l]>=.2*ac[L]&&Math.abs(l-c)<bd){bd=Math.abs(l-c);bl=l}
+    if(!bl)break;p=bl/m}
+  let o=0,bs=-1;
+  for(let t=0;t<p;t+=.5){let a=0,n=0;for(let x=t;x<len-3;x+=p){a+=peak(x,1);n++}if(n&&a/n>bs){bs=a/n;o=t}}
+  for(let it=0;it<3;it++){
+    const pts=[];for(let k=0;o+k*p<len-2;k++){const x=o+k*p,r=Math.max(2,Math.round(p*.12));let bx=-1,bv=0;
+      for(let d=-r;d<=r;d++){const v=at(x+d);if(v>bv){bv=v;bx=Math.round(x+d)}}
+      if(bx>=0&&bv>=.3*top)pts.push([k,bx])}
+    if(pts.length<4)return null;
+    let sk=0,sx=0,skk=0,skx=0;for(const[k,x]of pts){sk+=k;sx+=x;skk+=k*k;skx+=k*x}
+    const n=pts.length,den=n*skk-sk*sk;if(!den)return null;
+    p=(n*skx-sk*sx)/den;o=(sx-p*sk)/n;
+    if(!(p>=4)||!isFinite(o))return null;
+    o=((o%p)+p)%p}
+  let la=0,oa=0,cn=0;for(let x=o;x<len-3;x+=p){la+=peak(x,1);oa+=peak(x+p/2,1);cn++}
+  la/=cn;oa/=cn;if(cn<5||la<.1||la<3*oa+.03)return null;
+  const ms=[];for(let k=0;o+k*p<len-1;k++)ms.push(peak(o+k*p,2));
+  const sorted=ms.slice().sort((a,b)=>a-b),ref=sorted[Math.floor(sorted.length*.7)]||0;
+  const pres=ms.map(v=>v>=.35*ref);
+  let best=null,a=-1,cnt=0,gap=0;
+  for(let k=0;k<=ms.length;k++){
+    if(k<ms.length&&pres[k]){if(a<0){a=k;cnt=0}cnt++;gap=0;if(!best||cnt>best.c)best={a,b:k,c:cnt};
+      if(best&&best.a===a)best.b=k}
+    else if(a>=0){gap++;if(gap>3||k===ms.length){a=-1}}}
+  if(!best||best.b-best.a<4)return null;
+  return{p,o,k0:best.a,k1:best.b}}
+/* picture -> {fx,fy,nx,ny} when it already shows a grid */
+function imDetect(gr,w,h){
+  const P=4,w2=w+2*P,h2=h+2*P,pg=new Float32Array(w2*h2).fill(255);
+  for(let y=0;y<h;y++)pg.set(gr.subarray(y*w,y*w+w),(y+P)*w2+P);
+  const fx=imFit(imProfile(pg,w2,h2,true),w2),fy=imFit(imProfile(pg,w2,h2,false),h2);
+  if(!fx||!fy)return null;
+  fx.o-=P;fy.o-=P;
+  return{fx,fy,nx:fx.k1-fx.k0,ny:fy.k1-fy.k0}}
+/* average darkness of every square (0 dark .. 255 light) */
+function imCells(gr,w,h,d){
+  const out=[];
+  for(let j=0;j<d.ny;j++){const row=[];
+    const ya=d.fy.o+(d.fy.k0+j)*d.fy.p,yb=ya+d.fy.p,my=d.fy.p*.25;
+    for(let i=0;i<d.nx;i++){
+      const xa=d.fx.o+(d.fx.k0+i)*d.fx.p,xb=xa+d.fx.p,mx=d.fx.p*.25;
+      let x0=Math.round(xa+mx),x1=Math.round(xb-mx),y0=Math.round(ya+my),y1=Math.round(yb-my);
+      if(x1<=x0)x1=x0+1;if(y1<=y0)y1=y0+1;
+      x0=Math.max(0,x0);y0=Math.max(0,y0);x1=Math.min(w,x1);y1=Math.min(h,y1);
+      let s=0,n=0;for(let y=y0;y<y1;y++)for(let x=x0;x<x1;x++){s+=gr[y*w+x];n++}
+      row.push(n?s/n:255)}
+    out.push(row)}
+  return out}
+/* any picture -> nw x nh average darkness */
+function imShrink(gr,w,h,nw,nh){
+  const out=[];
+  for(let j=0;j<nh;j++){const row=[],y0=Math.floor(j*h/nh),y1=Math.max(y0+1,Math.floor((j+1)*h/nh));
+    for(let i=0;i<nw;i++){const x0=Math.floor(i*w/nw),x1=Math.max(x0+1,Math.floor((i+1)*w/nw));
+      let s=0,n=0;for(let y=y0;y<y1&&y<h;y++)for(let x=x0;x<x1&&x<w;x++){s+=gr[y*w+x];n++}
+      row.push(n?s/n:255)}
+    out.push(row)}
+  return out}
+/* darkness numbers -> stitches: 1 filled, 0 empty (or 2 mesh) */
+function imBinary(m,thr,inv,line,mesh){
+  const nh=m.length,nw=m[0].length,f=m.map(r=>r.map(v=>(v<=thr)!==!!inv));
+  return f.map((r,j)=>r.map((v,i)=>{
+    let on=v;
+    if(on&&line){const e=(y,x)=>y>=0&&y<nh&&x>=0&&x<nw&&f[y][x];on=!(e(j-1,i)&&e(j+1,i)&&e(j,i-1)&&e(j,i+1))}
+    return on?1:(mesh?2:0)}))}
+const IM={};
+function imOpen(){nf();IM.gray=null;$('imbody').hidden=true;$('imgo').disabled=true;$('imdrop').hidden=false;$('im').hidden=false}
+function imClose(){$('im').hidden=true}
+function imLoad(file){
+  if(!file)return;
+  const fr=new FileReader();
+  fr.onerror=()=>say("Couldn't open that file. Try a PNG or JPG picture.");
+  fr.onload=()=>{const img=new Image();
+    img.onload=()=>{
+      const m=Math.max(img.naturalWidth,img.naturalHeight),sc=m>1600?1600/m:1,
+        w=Math.max(1,Math.round(img.naturalWidth*sc)),h=Math.max(1,Math.round(img.naturalHeight*sc)),c=document.createElement('canvas');
+      c.width=w;c.height=h;const x=c.getContext('2d');x.drawImage(img,0,0,w,h);
+      let d;try{d=x.getImageData(0,0,w,h)}catch(e){return say("Couldn't read that picture. Try a PNG or JPG.")}
+      IM.cv=c;IM.w=w;IM.h=h;IM.gray=imGray(d.data,w,h);IM.name=(file.name||'').replace(/\.[^.]+$/,'').replace(/[^\w\- ]+/g,' ').trim().slice(0,20);
+      IM.det=imDetect(IM.gray,w,h);IM.auto={};IM.cells=null;IM.pkey=null;
+      $('immode').value=IM.det?'grid':'pic';$('imdrop').hidden=true;$('imbody').hidden=false;imRun(true)};
+    img.onerror=()=>say("Couldn't open that file. Try a PNG or JPG picture.");
+    img.src=fr.result};
+  fr.readAsDataURL(file)}
+function imRun(modeChanged){
+  if(!IM.gray)return;
+  const mode=$('immode').value,isGrid=mode==='grid';let m=null,note='';
+  $('impic').hidden=isGrid;
+  if(isGrid){
+    if(!IM.det)note='No grid found in this picture. Choose "Plain picture" to make your own grid.';
+    else if(IM.det.nx>200||IM.det.ny>200)note=`This chart is ${IM.det.nx} × ${IM.det.ny} squares. The most this app can hold is 200 in each direction.`;
+    else{if(!IM.cells)IM.cells=imCells(IM.gray,IM.w,IM.h,IM.det);m=IM.cells;
+      note=`Grid found: ${IM.det.nx} × ${IM.det.ny} squares. Your chart keeps exactly this size.`}}
+  else{
+    let nw=Math.max(5,Math.min(200,Math.round(+$('imw').value||60))),nh=Math.max(1,Math.round(nw*IM.h/IM.w));
+    if(nh>200){nh=200;nw=Math.max(1,Math.round(nh*IM.w/IM.h))}
+    const key=nw+'x'+nh;if(IM.pkey!==key){IM.pkey=key;IM.pm=imShrink(IM.gray,IM.w,IM.h,nw,nh)}
+    m=IM.pm;note=`Made a new grid: ${nw} × ${nh} squares. Change the width to make it finer or coarser.`}
+  if(m&&(modeChanged||IM.auto.mode!==mode)){IM.auto.mode=mode;const t=imOtsu(m.flat());IM.autoT=t;$('imthr').value=50}
+  const out=m?imBinary(m,Math.max(0,Math.min(255,(IM.autoT||128)+(+$('imthr').value-50)*1.6)),$('iminv').checked,!isGrid&&$('imstyle').value==='line',false):null;
+  IM.out=out;$('imnote').textContent=note;$('imgo').disabled=!out;
+  /* previews */
+  const s=$('imsrc'),sc=Math.min(150/IM.w,230/IM.h),sw=Math.round(IM.w*sc),sh=Math.round(IM.h*sc),r=window.devicePixelRatio||1,x=s.getContext('2d');
+  s.width=sw*r;s.height=sh*r;s.style.width=sw+'px';s.style.height=sh+'px';x.setTransform(r,0,0,r,0,0);
+  x.drawImage(IM.cv,0,0,sw,sh);
+  if(isGrid&&IM.det){const d=IM.det;x.strokeStyle='rgba(220,40,80,.8)';x.lineWidth=1;x.beginPath();
+    for(let k=d.fx.k0;k<=d.fx.k1;k++){const px=(d.fx.o+k*d.fx.p)*sc;x.moveTo(px,(d.fy.o+d.fy.k0*d.fy.p)*sc);x.lineTo(px,(d.fy.o+d.fy.k1*d.fy.p)*sc)}
+    for(let k=d.fy.k0;k<=d.fy.k1;k++){const py=(d.fy.o+k*d.fy.p)*sc;x.moveTo((d.fx.o+d.fx.k0*d.fx.p)*sc,py);x.lineTo((d.fx.o+d.fx.k1*d.fx.p)*sc,py)}
+    x.stroke()}
+  const c=$('imout');
+  if(out){const cs=Math.max(1,Math.min(14,Math.floor(220/out[0].length),Math.floor(240/out.length)));paintGrid(c,out,cs,cs>=6)}else clearCanvas(c)}
+function imApply(){
+  const b=IM.out;if(!b)return;imClose();
+  if($('imwhere').value==='tab'&&tabs.length<12){
+    if(flt)cancelFloat();saveTab();
+    tabs.push({name:IM.name||nextName(),g:b.map(r=>r.slice()),rot:0,undo:[],redo:[],cell:28});loadTab(tabs.length-1)}
+  else insertText(b)}
+$('imp').onclick=imOpen;
+['imfile','imfile2'].forEach(i=>$(i).addEventListener('change',e=>{const f=e.target.files&&e.target.files[0];e.target.value='';imLoad(f)}));
+$('imcancel').onclick=imClose;
+$('imgo').onclick=imApply;
+$('im').addEventListener('click',e=>{if(e.target===$('im'))imClose()});
+$('im').addEventListener('dragover',e=>e.preventDefault());
+$('im').addEventListener('drop',e=>{e.preventDefault();const f=e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files[0];if(f)imLoad(f)});
+['immode','imstyle','imwhere'].forEach(i=>$(i).addEventListener('change',()=>imRun(i==='immode')));
+['iminv'].forEach(i=>$(i).addEventListener('change',()=>imRun()));
+$('imthr').addEventListener('input',()=>imRun());
+$('imw').addEventListener('input',()=>imRun());
 $('txt').onclick=()=>{nf();$('txtm').hidden=false;$('ttxt').focus();tUpdate()};
 const closeTxt=()=>{$('txtm').hidden=true};
 $('tcancel').onclick=closeTxt;
